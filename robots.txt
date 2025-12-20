@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /admin/
-
-Crawl-delay: 1
-
-Sitemap: https://airdropalpha.vercel.app/sitemap.xml
