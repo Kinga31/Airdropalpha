@@ -1085,6 +1085,7 @@
             document.getElementById('errorText').textContent = message;
         }
         
+        // MODIFIÉ : Retourner à la page principale DANS LA MÊME FENÊTRE
         function goBack() {
             if (typeof gtag === 'function') {
                 gtag('event', 'back_to_list', {
@@ -1092,11 +1093,8 @@
                 });
             }
             
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.open('index.html', '_blank');
-            }
+            // Retourner à la page principale
+            window.location.href = 'index.html';
         }
     </script>
     
