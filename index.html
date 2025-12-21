@@ -5,22 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirdropAlpha - Discover The Best Cryptocurrency Airdrops</title>
     
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="AirdropAlpha: Discover The Best cryptocurrency airdrops. Maximize rewards with verified opportunities.">
+    <meta name="keywords" content="airdrop crypto, cryptocurrency airdrop, free tokens, crypto rewards, blockchain airdrops, defi airdrops">
+    <meta name="author" content="AirdropAlpha">
+    <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="language" content="en">
+    <meta name="revisit-after" content="7 days">
+    
     <!-- Canonical URL -->
     <link rel="canonical" href="https://airdropalpha.vercel.app/" />
     
-    <!-- Google Analytics GA4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7F31TS9VQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-K7F31TS9VQ');
-    </script>
-    
-    <!-- Meta Description -->
-    <meta name="description" content="AirdropAlpha: Discover The Best cryptocurrency airdrops. Maximize rewards with verified opportunities.">
-    
-    <!-- Open Graph tags -->
+    <!-- Open Graph -->
     <meta property="og:title" content="AirdropAlpha - Crypto Airdrops">
     <meta property="og:description" content="Maximize your rewards with our curated list of verified cryptocurrency airdrops.">
     <meta property="og:image" content="https://airdropalpha.vercel.app/og-image.png">
@@ -28,7 +26,7 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AirdropAlpha">
     
-    <!-- Twitter Card -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AirdropAlpha - Free Crypto Airdrops">
     <meta name="twitter:description" content="Curated list of cryptocurrency airdrops. Maximize your rewards with verified opportunities.">
@@ -38,39 +36,51 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "AirdropAlpha",
-      "description": "Platform for discovering and participating in cryptocurrency airdrops.",
+      "@type": "CollectionPage",
+      "name": "AirdropAlpha - Cryptocurrency Airdrops Directory",
+      "description": "Comprehensive directory of verified cryptocurrency airdrops with detailed information and participation guides.",
       "url": "https://airdropalpha.vercel.app/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://airdropalpha.vercel.app/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
+      "publisher": {
+        "@type": "Organization",
+        "name": "AirdropAlpha",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://airdropalpha.vercel.app/logo.png"
+        }
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": 50,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": {
+              "@type": "FinancialProduct",
+              "name": "Cryptocurrency Airdrop Directory",
+              "description": "Verified free token distributions for cryptocurrency projects"
+            }
+          }
+        ]
       }
     }
     </script>
     
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "AirdropAlpha",
-      "url": "https://airdropalpha.vercel.app/",
-      "logo": "https://airdropalpha.vercel.app/logo.png",
-      "description": "Curated cryptocurrency airdrop platform",
-      "sameAs": [
-        "https://twitter.com/airdropalpha",
-        "https://t.me/airdropalpha"
-      ]
-    }
-    </script>
+    <!-- Preconnect & Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style">
     
     <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
 
     <style>
         :root {
@@ -80,21 +90,6 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
-            --background: #ffffff;
-            --surface: #f8fafc;
-            --border: #e2e8f0;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            --text-muted: #94a3b8;
-            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-        }
-        
-        [data-theme="dark"] {
             --background: #0f172a;
             --surface: #1e293b;
             --border: #334155;
@@ -104,22 +99,42 @@
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
             --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
             --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -moz-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
         }
         
         body {
             background: var(--background);
             color: var(--text-primary);
-            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
         
         /* Navigation */
         .navbar {
             background: var(--background);
             box-shadow: var(--shadow-sm);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .navbar-brand {
@@ -129,76 +144,24 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-size: 1.5rem;
-        }
-        
-        /* Theme Toggle */
-        .theme-toggle {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 50px;
-            padding: 0.5rem;
-            cursor: pointer;
-            width: 60px;
-            height: 32px;
-            position: relative;
-            margin-right: 1rem;
-            transition: all 0.3s ease;
-        }
-        
-        .theme-toggle i {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        
-        .theme-toggle .fa-sun {
-            left: 8px;
-            color: #f59e0b;
-        }
-        
-        .theme-toggle .fa-moon {
-            right: 8px;
-            color: #94a3b8;
-        }
-        
-        .theme-toggle.active .fa-sun {
-            transform: translateY(-50%) scale(1.2);
-            color: #fbbf24;
-        }
-        
-        .theme-toggle.active .fa-moon {
-            transform: translateY(-50%) scale(0.8);
-            color: #64748b;
-        }
-        
-        .theme-toggle::before {
-            content: '';
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            width: 24px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 50%;
-            transition: transform 0.3s ease;
-        }
-        
-        .theme-toggle.active::before {
-            transform: translateX(28px);
-            background: var(--primary-dark);
+            text-decoration: none;
         }
         
         /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 5rem 0 4rem;
+            padding: 3rem 0 2.5rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
             border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section {
+                padding: 4rem 0 3.5rem;
+            }
         }
         
         .hero-section::before {
@@ -213,18 +176,19 @@
         }
         
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             background: linear-gradient(to right, #ffffff, rgba(255,255,255,0.8));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.2;
         }
         
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 3.5rem;
             }
         }
         
@@ -233,12 +197,14 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
         
         .airdrop-card::before {
@@ -249,28 +215,37 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transform: translateY(-4px);
-            transition: transform 0.3s ease;
+            opacity: 0.8;
         }
         
-        .airdrop-card:hover {
-            transform: translateY(-8px);
+        .airdrop-card:active {
+            transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--primary);
         }
         
-        .airdrop-card:hover::before {
-            transform: translateY(0);
+        @media (hover: hover) {
+            .airdrop-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg);
+                border-color: var(--primary);
+            }
         }
         
         .project-logo {
-            width: 64px;
-            height: 64px;
+            width: 56px;
+            height: 56px;
             border-radius: var(--radius-sm);
             object-fit: cover;
-            border: 3px solid var(--border);
-            background: white;
-            padding: 4px;
+            border: 2px solid var(--border);
+            background: var(--background);
+            padding: 3px;
+        }
+        
+        @media (max-width: 576px) {
+            .project-logo {
+                width: 48px;
+                height: 48px;
+            }
         }
         
         /* Badges */
@@ -281,33 +256,36 @@
             font-weight: 600;
             letter-spacing: 0.02em;
             border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            margin: 0.25rem;
         }
         
         .badge-free {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.25));
             color: var(--success);
-            border-color: rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.4);
         }
         
         .badge-hot {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.2));
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.25));
             color: var(--danger);
-            border-color: rgba(239, 68, 68, 0.3);
+            border-color: rgba(239, 68, 68, 0.4);
         }
         
         .badge-new {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25));
             color: var(--warning);
-            border-color: rgba(245, 158, 11, 0.3);
+            border-color: rgba(245, 158, 11, 0.4);
         }
         
         .category-badge {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.2));
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(99, 102, 241, 0.25));
             color: var(--primary);
             padding: 0.4rem 0.8rem;
             border-radius: 20px;
             font-size: 0.75rem;
-            border: 1px solid rgba(99, 102, 241, 0.3);
+            border: 1px solid rgba(99, 102, 241, 0.4);
             display: inline-flex;
             align-items: center;
             margin: 0.25rem;
@@ -315,12 +293,12 @@
         
         /* Backer Badge */
         .backer-badge-index {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25));
             color: var(--warning);
             padding: 0.3rem 0.6rem;
             border-radius: 15px;
             font-size: 0.7rem;
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(245, 158, 11, 0.4);
             display: inline-flex;
             align-items: center;
             margin-right: 0.3rem;
@@ -334,9 +312,10 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             display: flex;
             align-items: center;
+            margin: 0.75rem 0;
         }
         
         /* Search */
@@ -344,14 +323,9 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 1.5rem;
+            padding: 1.25rem;
             box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
-        }
-        
-        .search-box:focus-within {
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-            border-color: var(--primary);
+            margin-bottom: 1.5rem;
         }
         
         .search-input {
@@ -360,12 +334,17 @@
             color: var(--text-primary);
             padding: 0.75rem 1rem;
             border-radius: var(--radius-sm);
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            width: 100%;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
         }
         
         .search-input:focus {
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
         }
         
         /* Filters */
@@ -373,9 +352,9 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 1.5rem;
+            padding: 1.25rem;
             box-shadow: var(--shadow-md);
-            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
         }
         
         .filter-btn {
@@ -387,40 +366,62 @@
             font-size: 0.875rem;
             transition: all 0.2s ease;
             margin: 0.25rem;
+            cursor: pointer;
+            min-height: 44px;
+            min-width: 44px;
         }
         
-        .filter-btn:hover, .filter-btn.active {
+        .filter-btn.active {
             background: var(--primary);
             color: white;
             border-color: var(--primary);
-            transform: translateY(-2px);
+        }
+        
+        @media (hover: hover) {
+            .filter-btn:hover {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
         }
         
         /* Buttons */
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .btn {
             border: none;
             padding: 0.75rem 1.5rem;
             border-radius: var(--radius-sm);
             font-weight: 600;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            min-height: 44px;
+            min-width: 44px;
+            transition: all 0.2s ease;
         }
         
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-outline-light {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
         }
         
         .btn-outline-secondary {
             border: 1px solid var(--border);
             color: var(--text-secondary);
             background: transparent;
-        }
-        
-        .btn-outline-secondary:hover {
-            background: var(--surface);
-            border-color: var(--primary);
-            color: var(--primary);
         }
         
         /* Alerts */
@@ -430,16 +431,18 @@
             background: var(--surface);
             border-left: 4px solid;
             color: var(--text-primary);
+            padding: 1rem;
+            margin: 1rem 0;
         }
         
         .alert-info {
             border-left-color: var(--primary);
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(99, 102, 241, 0.12));
         }
         
         .alert-warning {
             border-left-color: var(--warning);
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.12));
         }
         
         /* Content Sections */
@@ -447,9 +450,16 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            margin: 3rem 0;
+            padding: 2rem;
+            margin: 2.5rem 0;
             box-shadow: var(--shadow-md);
+        }
+        
+        @media (max-width: 768px) {
+            .seo-content-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+            }
         }
         
         /* Category Cards */
@@ -457,9 +467,9 @@
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius-md);
-            padding: 2rem;
+            padding: 1.5rem;
             height: 100%;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -472,42 +482,30 @@
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            opacity: 0.8;
         }
         
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .category-card:hover::before {
-            opacity: 1;
+        @media (hover: hover) {
+            .category-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-lg);
+            }
         }
         
         /* Animations */
         @keyframes fadeIn {
             from { 
                 opacity: 0; 
-                transform: translateY(20px) scale(0.95); 
+                transform: translateY(10px);
             }
             to { 
                 opacity: 1; 
-                transform: translateY(0) scale(1); 
+                transform: translateY(0);
             }
         }
         
         .airdrop-card {
-            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .floating-icon {
-            animation: float 3s ease-in-out infinite;
+            animation: fadeIn 0.3s ease-out;
         }
         
         /* Footer */
@@ -515,7 +513,8 @@
             background: var(--surface);
             border-top: 1px solid var(--border);
             color: var(--text-primary);
-            margin-top: 4rem;
+            margin-top: 3rem;
+            padding: 2.5rem 0;
         }
         
         /* Loading */
@@ -523,81 +522,17 @@
             width: 3rem;
             height: 3rem;
             border-width: 3px;
+            border-color: var(--primary) transparent var(--primary) transparent;
+            animation: spinner 1.2s linear infinite;
+            margin: 2rem auto;
         }
         
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        @keyframes spinner {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
-        ::-webkit-scrollbar-track {
-            background: var(--surface);
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 4px;
-            transition: background 0.3s ease;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--text-muted);
-        }
-        
-        /* Details Button */
-        .details-button {
-            transition: all 0.3s ease;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text-secondary);
-        }
-        
-        .details-button:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: transparent;
-            transform: translateY(-2px);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-section {
-                padding: 3rem 0 2rem;
-            }
-            
-            .search-box {
-                padding: 1rem;
-            }
-            
-            .seo-content-section {
-                padding: 1.5rem;
-            }
-            
-            .category-card {
-                padding: 1.5rem;
-            }
-            
-            .airdrop-card {
-                padding: 1.25rem;
-            }
-        }
-        
-        /* Print */
-        @media print {
-            .navbar, .hero-buttons, .search-box, .filters-container, footer {
-                display: none;
-            }
-            
-            .airdrop-card {
-                break-inside: avoid;
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
-        }
-        
-        /* Accessibility */
+        /* Utility Classes */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -610,11 +545,96 @@
             border: 0;
         }
         
-        a:focus, button:focus, input:focus {
-            outline: 2px solid var(--primary);
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+        }
+        
+        /* Focus styles for accessibility */
+        :focus-visible {
+            outline: 3px solid var(--primary);
             outline-offset: 2px;
         }
+        
+        /* Mobile optimizations */
+        @media (max-width: 576px) {
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                margin-bottom: 0.75rem;
+            }
+            
+            .hero-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .filters-container {
+                margin-bottom: 1rem;
+            }
+            
+            .filter-section {
+                padding: 1rem;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar, .hero-buttons, .search-box, .filters-container, footer,
+            .btn, .hero-section::before {
+                display: none !important;
+            }
+            
+            .hero-section {
+                background: white !important;
+                color: black !important;
+                padding: 1rem 0 !important;
+            }
+            
+            .hero-title {
+                background: black !important;
+                -webkit-text-fill-color: black !important;
+            }
+            
+            .airdrop-card {
+                break-inside: avoid;
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+                page-break-inside: avoid;
+            }
+        }
+        
+        /* Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K7F31TS9VQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K7F31TS9VQ');
+    </script>
 
     <!-- Vercel Web Analytics -->
     <script>
@@ -624,77 +644,70 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg sticky-top">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="container">
             <a class="navbar-brand" href="/" aria-label="AirdropAlpha Home">
                 <i class="fas fa-gem me-2"></i>AirdropAlpha
             </a>
-            <div class="d-flex align-items-center">
-                <!-- Theme Toggle -->
-                <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
-                    <i class="fas fa-sun"></i>
-                    <i class="fas fa-moon"></i>
-                </div>
-                <button class="btn btn-primary" onclick="loadAirdrops()" id="refreshBtn" aria-label="Refresh airdrops list">
-                    <i class="fas fa-sync-alt"></i> <span class="d-none d-md-inline">Refresh</span>
-                </button>
-            </div>
+            <button class="btn btn-primary" onclick="loadAirdrops()" id="refreshBtn">
+                <i class="fas fa-sync-alt"></i> <span class="d-none d-md-inline">Refresh</span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-section">
+    <section class="hero-section" aria-label="Introduction">
         <div class="container text-center">
             <h1 class="hero-title mb-3">Cryptocurrency Airdrops</h1>
             <p class="lead mb-4 opacity-90">Explore a trusted platform dedicated to verified crypto opportunities. Stay informed, discover new projects, and maximize your rewards with reliable and up-to-date information.</p>
             <div class="hero-buttons">
-                <a href="#airdropsContainer" class="btn btn-light btn-lg px-4 py-2" onclick="scrollToAirdrops()">
+                <a href="#airdropsContainer" class="btn btn-light btn-lg" onclick="scrollToAirdrops()">
                     <i class="fas fa-rocket me-2"></i>Explore Airdrops
                 </a>
-                <a href="#guideSection" class="btn btn-outline-light btn-lg px-4 py-2" onclick="scrollToGuide()">
+                <a href="#guideSection" class="btn btn-outline-light btn-lg" onclick="scrollToGuide()">
                     <i class="fas fa-book me-2"></i>Learn Guide
                 </a>
             </div>
         </div>
-    </div>
-
-    <!-- Search Box -->
-    <div class="container">
-        <div class="search-container">
-            <div class="search-box">
-                <div class="input-group">
-                    <span class="input-group-text bg-transparent border-end-0">
-                        <i class="fas fa-search text-muted"></i>
-                    </span>
-                    <input type="text" class="form-control search-input border-start-0" 
-                           placeholder="Search for a project, category, or description..." 
-                           id="searchInput" 
-                           aria-label="Search airdrops">
-                    <button class="btn btn-primary px-4" onclick="searchAirdrops()" aria-label="Search">
-                        <i class="fas fa-search me-2"></i>Search
-                    </button>
-                </div>
-                <div class="mt-3 text-center">
-                    <small class="text-muted">
-                        <i class="fas fa-info-circle me-1"></i>
-                        Search across all airdrop names, categories, and descriptions
-                    </small>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Main Content -->
-    <div class="container">
+    <main class="container" id="main-content">
+        <!-- Search Box -->
+        <section aria-label="Search airdrops">
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" class="form-control search-input border-start-0" 
+                               placeholder="Search for a project, category, or description..." 
+                               id="searchInput" 
+                               aria-label="Search airdrops">
+                        <button class="btn btn-primary px-4" onclick="searchAirdrops()">
+                            <i class="fas fa-search me-2"></i>Search
+                        </button>
+                    </div>
+                    <div class="mt-3 text-center">
+                        <small class="text-muted">
+                            <i class="fas fa-info-circle me-1"></i>
+                            Search across all airdrop names, categories, and descriptions
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Filters Container -->
-        <div class="filters-container">
+        <section class="filters-container" aria-label="Filter options">
             <!-- Type Filter -->
             <div class="filter-section">
-                <h6 class="fw-bold mb-3 d-flex align-items-center">
+                <h2 class="h6 fw-bold mb-3 d-flex align-items-center">
                     <i class="fas fa-tags me-2 text-primary"></i>Filter by Type
-                </h6>
+                </h2>
                 <div id="typeFiltersContainer" class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-sm filter-btn active" onclick="showAll()" aria-label="Show all airdrops">
+                    <button class="btn btn-sm filter-btn active" onclick="showAll()">
                         <i class="fas fa-layer-group me-1"></i> All Airdrops
                     </button>
                 </div>
@@ -702,40 +715,40 @@
             
             <!-- Category Filter -->
             <div class="filter-section">
-                <h6 class="fw-bold mb-3 d-flex align-items-center">
+                <h2 class="h6 fw-bold mb-3 d-flex align-items-center">
                     <i class="fas fa-filter me-2 text-primary"></i>Filter by Category
-                </h6>
+                </h2>
                 <div id="categoryFiltersContainer" class="d-flex flex-wrap gap-2">
                     <!-- Category buttons will be generated here -->
                 </div>
             </div>
-        </div>
+        </section>
 
         <!-- Loading -->
         <div id="loading" class="text-center my-5 py-5">
-            <div class="spinner-border text-primary loading-spinner" role="status">
-                <span class="visually-hidden">Loading...</span>
+            <div class="loading-spinner" role="status">
+                <span class="visually-hidden">Loading airdrops...</span>
             </div>
             <p class="mt-3 text-muted">Loading airdrops...</p>
         </div>
 
         <!-- Airdrops Container -->
-        <div id="airdropsContainer" class="row">
+        <section id="airdropsContainer" class="row" aria-label="Airdrops list">
             <!-- Cards will be generated here by JavaScript -->
-        </div>
+        </section>
 
         <!-- No Results -->
-        <div id="noResults" class="text-center my-5 py-5" style="display: none;">
+        <div id="noResults" class="text-center my-5 py-5" style="display: none;" aria-hidden="true">
             <i class="fas fa-search fa-3x text-muted mb-3"></i>
-            <h3 class="mb-3">No airdrops found</h3>
+            <h2 class="mb-3">No airdrops found</h2>
             <p class="text-muted mb-4">Try adjusting your search filters</p>
             <button class="btn btn-primary" onclick="showAll()">
                 <i class="fas fa-redo me-2"></i> Show All Airdrops
             </button>
         </div>
         
-        <!-- Section de contenu SEO additionnel -->
-        <div id="guideSection" class="seo-content-section">
+        <!-- SEO Content Section -->
+        <article id="guideSection" class="seo-content-section">
             <h2 class="fw-bold mb-4 d-flex align-items-center">
                 <i class="fas fa-gem me-3 text-primary"></i>What are Crypto Airdrops?
             </h2>
@@ -751,7 +764,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center">
                             <div class="me-3 text-primary">
-                                <i class="fas fa-gift fa-2x floating-icon"></i>
+                                <i class="fas fa-gift fa-2x"></i>
                             </div>
                             <div>
                                 <strong>Standard Airdrops</strong>
@@ -760,7 +773,7 @@
                         </li>
                         <li class="list-group-item d-flex align-items-center">
                             <div class="me-3 text-success">
-                                <i class="fas fa-tasks fa-2x floating-icon"></i>
+                                <i class="fas fa-tasks fa-2x"></i>
                             </div>
                             <div>
                                 <strong>Bounty Airdrops</strong>
@@ -773,7 +786,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center">
                             <div class="me-3 text-warning">
-                                <i class="fas fa-coins fa-2x floating-icon"></i>
+                                <i class="fas fa-coins fa-2x"></i>
                             </div>
                             <div>
                                 <strong>Holder Airdrops</strong>
@@ -782,7 +795,7 @@
                         </li>
                         <li class="list-group-item d-flex align-items-center">
                             <div class="me-3 text-danger">
-                                <i class="fas fa-crown fa-2x floating-icon"></i>
+                                <i class="fas fa-crown fa-2x"></i>
                             </div>
                             <div>
                                 <strong>Exclusive Airdrops</strong>
@@ -800,7 +813,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-primary p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary p-3 mb-2">
                                 <i class="fas fa-layer-group text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">Layer 2 Solutions</h4>
@@ -812,7 +825,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-success p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success p-3 mb-2">
                                 <i class="fas fa-chart-line text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">DeFi Protocols</h4>
@@ -824,7 +837,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-warning p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-warning p-3 mb-2">
                                 <i class="fas fa-images text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">NFT Projects</h4>
@@ -836,7 +849,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-info p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-info p-3 mb-2">
                                 <i class="fas fa-server text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">Infrastructure</h4>
@@ -848,7 +861,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-danger p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-danger p-3 mb-2">
                                 <i class="fas fa-gamepad text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">Gaming</h4>
@@ -860,7 +873,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="category-card">
                         <div class="text-center mb-3">
-                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-secondary p-3 mb-2">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-secondary p-3 mb-2">
                                 <i class="fas fa-users text-white fa-2x"></i>
                             </div>
                             <h4 class="fw-bold mb-2">SocialFi</h4>
@@ -911,11 +924,11 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </article>
+    </main>
 
     <!-- Footer -->
-    <footer class="py-5">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-4 mb-md-0">
@@ -951,7 +964,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mt-4 pt-4 border-top border-color">
+            <div class="row mt-4 pt-4 border-top">
                 <div class="col-12 text-center">
                     <p class="small text-muted mb-2 d-flex align-items-center justify-content-center">
                         <i class="fas fa-exclamation-triangle me-2"></i>
@@ -972,33 +985,6 @@
         let allAirdrops = [];
         let allCategories = new Set();
         let allTypes = new Set();
-        
-        // Theme Management
-        function initTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
-            
-            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
-        }
-        
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            const themeToggle = document.getElementById('themeToggle');
-            
-            if (theme === 'dark') {
-                themeToggle.classList.add('active');
-            } else {
-                themeToggle.classList.remove('active');
-            }
-            
-            localStorage.setItem('theme', theme);
-        }
-        
-        function toggleTheme() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-        }
         
         // Icons for categories
         const categoryIcons = {
@@ -1069,7 +1055,6 @@
         // Load data on startup
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 AirdropAlpha initialized');
-            initTheme();
             loadAirdrops();
             
             // Initialize search input
@@ -1087,6 +1072,11 @@
                     'page_location': window.location.href,
                     'page_path': '/'
                 });
+            }
+            
+            // Hide console.log in production
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                console.log = function() {};
             }
         });
         
@@ -1225,20 +1215,20 @@
                     
                     // MAPPING EXACT SELON VOTRE STRUCTURE
                     result.push({
-                        Name: airdrop.Nom || '',                    // colonne B
-                        URL: airdrop.URL || '#',                    // colonne C
-                        Backers: airdrop.Backer || '',              // colonne E
-                        Commission: airdrop.Commission ? `$${airdrop.Commission}M` : '', // colonne F
-                        Expiration: airdrop['Expire le'] || '-',    // colonne H
-                        Category: airdrop.Catégorie || '',          // colonne I
-                        Reward: airdrop.Récompense || 'Not specified', // colonne J
-                        Effort: airdrop.Effort || 'Medium',         // colonne K
-                        Score: score,                               // colonne L
-                        Notes: airdrop.Notes || 'No description available', // colonne M
-                        Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128', // colonne N
-                        Type: airdrop.Type || '',                   // colonne O
-                        LongDescription: airdrop['Description Longue'] || '', // colonne P
-                        HowToParticipate: airdrop['How to Participate'] || '', // colonne Q
+                        Name: airdrop.Nom || '',
+                        URL: airdrop.URL || '#',
+                        Backers: airdrop.Backer || '',
+                        Commission: airdrop.Commission ? `$${airdrop.Commission}M` : '',
+                        Expiration: airdrop['Expire le'] || '-',
+                        Category: airdrop.Catégorie || '',
+                        Reward: airdrop.Récompense || 'Not specified',
+                        Effort: airdrop.Effort || 'Medium',
+                        Score: score,
+                        Notes: airdrop.Notes || 'No description available',
+                        Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128',
+                        Type: airdrop.Type || '',
+                        LongDescription: airdrop['Description Longue'] || '',
+                        HowToParticipate: airdrop['How to Participate'] || '',
                         RowOrder: i - 1
                     });
                 }
@@ -1347,10 +1337,12 @@
             if (!airdrops || airdrops.length === 0) {
                 container.innerHTML = '';
                 document.getElementById('noResults').style.display = 'block';
+                document.getElementById('noResults').setAttribute('aria-hidden', 'false');
                 return;
             }
             
             document.getElementById('noResults').style.display = 'none';
+            document.getElementById('noResults').setAttribute('aria-hidden', 'true');
             
             // Garder l'ordre original
             airdrops.sort((a, b) => {
@@ -1443,9 +1435,7 @@
                 
                 return `
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="airdrop-card h-100 d-flex flex-column" onclick="openAirdropDetails(${JSON.stringify(airdrop).replace(/"/g, '&quot;').replace(/'/g, "\\'")})" 
-                             style="cursor: pointer;" 
-                             title="Click to view details of ${airdrop.Name}"
+                        <article class="airdrop-card h-100" onclick="openAirdropDetails(${JSON.stringify(airdrop).replace(/"/g, '&quot;').replace(/'/g, "\\'")})" 
                              data-airdrop-id="airdrop-${index}">
                             
                             <!-- Header -->
@@ -1457,7 +1447,7 @@
                                          loading="${index < 6 ? 'eager' : 'lazy'}"
                                          onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=google.com&sz=128'">
                                     <div>
-                                        <h2 class="h5 fw-bold mb-1">${airdrop.Name}</h2>
+                                        <h3 class="h5 fw-bold mb-1">${airdrop.Name}</h3>
                                         <div class="d-flex align-items-center flex-wrap mt-1">
                                             ${typeBadges}
                                             ${expirationBadge}
@@ -1512,7 +1502,7 @@
                                 </a>
                                 
                                 <!-- Bouton pour voir les détails -->
-                                <button class="btn btn-outline-secondary details-button" 
+                                <button class="btn btn-outline-secondary" 
                                         onclick="openAirdropDetails(${JSON.stringify(airdrop).replace(/"/g, '&quot;').replace(/'/g, "\\'")}); event.stopPropagation();">
                                     <i class="fas fa-info-circle me-2"></i> View Details
                                 </button>
@@ -1524,7 +1514,7 @@
                                     <i class="fas fa-mouse-pointer me-1"></i> Click card for more details
                                 </small>
                             </div>
-                        </div>
+                        </article>
                     </div>
                 `;
             }).join('');
@@ -1532,7 +1522,6 @@
             console.log(`🎨 Displayed ${airdrops.length} airdrops`);
         }
         
-        // MODIFIÉ : Ouvrir les détails de l'airdrop SUR LA MÊME PAGE
         function openAirdropDetails(airdrop) {
             try {
                 // DEBUG: Vérifier les backers avant envoi
