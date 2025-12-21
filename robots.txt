@@ -1,7 +1,17 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /*.css$
 Crawl-delay: 1
 
 Sitemap: https://airdropalpha.vercel.app/sitemap.xml
+
+# Directives pour moteurs de recherche spécifiques
+User-agent: Googlebot
+Allow: /
+Disallow: /private/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
