@@ -1532,12 +1532,9 @@
             console.log(`🎨 Displayed ${airdrops.length} airdrops`);
         }
         
-        // NOUVELLE FONCTION : Ouvrir les détails de l'airdrop
+        // MODIFIÉ : Ouvrir les détails de l'airdrop SUR LA MÊME PAGE
         function openAirdropDetails(airdrop) {
             try {
-                // Ajouter un timestamp pour éviter le cache
-                airdrop.timestamp = new Date().getTime();
-                
                 // DEBUG: Vérifier les backers avant envoi
                 console.log('🔍 DEBUG avant ouverture détails:');
                 console.log('  Nom:', airdrop.Name);
@@ -1548,9 +1545,8 @@
                 localStorage.setItem('currentAirdrop', JSON.stringify(airdrop));
                 localStorage.setItem('currentAirdropTime', new Date().getTime());
                 
-                // Ouvrir la page de détails dans un nouvel onglet
-                const detailsUrl = 'airdrop-details.html';
-                window.open(detailsUrl, '_blank');
+                // REDIRECTION VERS LA PAGE DE DÉTAILS DANS LA MÊME FENÊTRE
+                window.location.href = 'airdrop-details.html';
                 
                 // Track analytics
                 if (typeof gtag === 'function') {
