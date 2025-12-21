@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AirdropAlpha - Discover The Best Cryptocurrency Airdrops</title>
     
-    <!-- Canonical URL - CRITIQUE POUR RÉSOUDRE LES REDIRECTIONS -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://airdropalpha.vercel.app/" />
     
     <!-- Google Analytics GA4 -->
@@ -17,11 +17,11 @@
       gtag('config', 'G-K7F31TS9VQ');
     </script>
     
-    <!-- META DESCRIPTION OPTIMISÉE -->
+    <!-- Meta Description -->
     <meta name="description" content="AirdropAlpha: Discover The Best cryptocurrency airdrops. Maximize rewards with verified opportunities.">
     
-    <!-- Open Graph tags pour les réseaux sociaux -->
-    <meta property="og:title" content="AirdropAlpha -  Crypto Airdrops ">
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="AirdropAlpha - Crypto Airdrops">
     <meta property="og:description" content="Maximize your rewards with our curated list of verified cryptocurrency airdrops.">
     <meta property="og:image" content="https://airdropalpha.vercel.app/og-image.png">
     <meta property="og:url" content="https://airdropalpha.vercel.app/">
@@ -34,7 +34,7 @@
     <meta name="twitter:description" content="Curated list of cryptocurrency airdrops. Maximize your rewards with verified opportunities.">
     <meta name="twitter:image" content="https://airdropalpha.vercel.app/og-image.png">
     
-    <!-- Structured Data pour le SEO -->
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -74,37 +74,131 @@
 
     <style>
         :root {
-            --primary: #3b82f6;
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
             --secondary: #8b5cf6;
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
+            --background: #ffffff;
+            --surface: #f8fafc;
+            --border: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+        
+        [data-theme="dark"] {
+            --background: #0f172a;
+            --surface: #1e293b;
+            --border: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
         }
         
         body {
-            background: #f8fafc;
-            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
         
+        /* Navigation */
         .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background: var(--background);
+            box-shadow: var(--shadow-sm);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
         
         .navbar-brand {
             font-weight: 800;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-size: 1.5rem;
         }
         
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            width: 60px;
+            height: 32px;
+            position: relative;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle i {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .theme-toggle .fa-sun {
+            left: 8px;
+            color: #f59e0b;
+        }
+        
+        .theme-toggle .fa-moon {
+            right: 8px;
+            color: #94a3b8;
+        }
+        
+        .theme-toggle.active .fa-sun {
+            transform: translateY(-50%) scale(1.2);
+            color: #fbbf24;
+        }
+        
+        .theme-toggle.active .fa-moon {
+            transform: translateY(-50%) scale(0.8);
+            color: #64748b;
+        }
+        
+        .theme-toggle::before {
+            content: '';
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-toggle.active::before {
+            transform: translateX(28px);
+            background: var(--primary-dark);
+        }
+        
+        /* Hero Section */
         .hero-section {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 4rem 0;
+            padding: 5rem 0 4rem;
             margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
         }
         
         .hero-section::before {
@@ -114,278 +208,301 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100"><path fill="rgba(255,255,255,0.1)" d="M0,0 L1000,0 L1000,100 L0,100 Z" /></svg>');
-            opacity: 0.1;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
         }
         
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #ffffff, rgba(255,255,255,0.8));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Cards */
         .airdrop-card {
-            background: white;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .airdrop-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .project-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 3px solid #e5e7eb;
-        }
-        
-        .badge-type {
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-        
-        .badge-free {
-            background: #d1fae5;
-            color: var(--success);
-        }
-        
-        .badge-hot {
-            background: #fee2e2;
-            color: var(--danger);
-        }
-        
-        .reward-text {
-            color: var(--success);
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-        
-        .category-badge {
-            background: #e0e7ff;
-            color: var(--primary);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-right: 0.5rem;
-            display: inline-block;
-        }
-        
-        .description-text {
-            color: #64748b;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-top: 0.75rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
             overflow: hidden;
         }
         
-        .expiration-badge {
-            background: #fef3c7;
-            color: #92400e;
-            padding: 0.25rem 0.75rem;
+        .airdrop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: translateY(-4px);
+            transition: transform 0.3s ease;
+        }
+        
+        .airdrop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        
+        .airdrop-card:hover::before {
+            transform: translateY(0);
+        }
+        
+        .project-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+            border: 3px solid var(--border);
+            background: white;
+            padding: 4px;
+        }
+        
+        /* Badges */
+        .badge-type {
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 0.5rem;
-        }
-        
-        .filter-category {
-            transition: all 0.2s ease;
-        }
-        
-        .filter-category:hover {
-            transform: scale(1.05);
-        }
-        
-        .filter-type {
-            transition: all 0.2s ease;
-        }
-        
-        .filter-type:hover {
-            transform: scale(1.05);
-        }
-        
-        .filters-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .filter-section {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            flex: 1;
-            min-width: 300px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .filter-section h6 {
-            margin-bottom: 1rem;
-            color: #374151;
+            font-size: 0.75rem;
             font-weight: 600;
+            letter-spacing: 0.02em;
+            border: 1px solid transparent;
         }
         
-        .active-filter {
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        .badge-free {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.2));
+            color: var(--success);
+            border-color: rgba(16, 185, 129, 0.3);
         }
         
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
+        .badge-hot {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.2));
+            color: var(--danger);
+            border-color: rgba(239, 68, 68, 0.3);
         }
         
-        .hero-buttons .btn {
-            padding: 0.75rem 1.5rem;
-            font-weight: 600;
-            border-radius: 50px;
+        .badge-new {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+            color: var(--warning);
+            border-color: rgba(245, 158, 11, 0.3);
         }
         
-        .search-container {
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
+        .category-badge {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.2));
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            display: inline-flex;
+            align-items: center;
+            margin: 0.25rem;
         }
         
-        .search-box {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        /* Backer Badge */
+        .backer-badge-index {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+            color: var(--warning);
+            padding: 0.3rem 0.6rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            display: inline-flex;
+            align-items: center;
+            margin-right: 0.3rem;
+            margin-bottom: 0.3rem;
         }
         
-        /* Styles pour la section SEO améliorée */
-        .seo-content-section {
-            background: white;
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin: 3rem 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .seo-content-section h2 {
-            color: #1f2937;
-            margin-bottom: 1.5rem;
+        /* Reward Text */
+        .reward-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 700;
-        }
-        
-        .seo-content-section h3 {
-            color: #374151;
-            margin: 2rem 0 1rem;
-            font-weight: 600;
-        }
-        
-        .seo-content-section h4 {
-            color: #4b5563;
-            margin-bottom: 0.75rem;
-        }
-        
-        .category-card {
-            height: 100%;
-            border: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            background: #f9fafb;
-        }
-        
-        .category-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        
-        .category-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
+            font-size: 1.3rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
         }
         
-        .category-icon.layer2 {
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        /* Search */
+        .search-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
         }
         
-        .category-icon.defi {
-            background: linear-gradient(135deg, #10b981, #059669);
+        .search-box:focus-within {
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            border-color: var(--primary);
         }
         
-        .category-icon.nft {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
+        .search-input {
+            background: var(--background);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s ease;
         }
         
-        .category-icon.infra {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
         }
         
-        .category-icon.gaming {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
+        /* Filters */
+        .filter-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s ease;
         }
         
-        .category-icon.social {
-            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        .filter-btn {
+            background: var(--background);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            margin: 0.25rem;
         }
         
-        .list-group-item {
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             border: none;
-            padding: 1rem 0;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-outline-secondary {
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
             background: transparent;
         }
         
-        .list-group-item:not(:last-child) {
-            border-bottom: 1px solid #e9ecef !important;
+        .btn-outline-secondary:hover {
+            background: var(--surface);
+            border-color: var(--primary);
+            color: var(--primary);
         }
         
+        /* Alerts */
         .alert {
-            border-radius: 12px;
+            border-radius: var(--radius-md);
             border: none;
+            background: var(--surface);
+            border-left: 4px solid;
+            color: var(--text-primary);
         }
         
         .alert-info {
-            background: rgba(13, 110, 253, 0.1);
-            border-left: 4px solid #0d6efd;
+            border-left-color: var(--primary);
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(99, 102, 241, 0.1));
         }
         
         .alert-warning {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #ffc107;
+            border-left-color: var(--warning);
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));
         }
         
-        .bg-opacity-10 {
-            background-color: rgba(var(--bs-primary-rgb), 0.1) !important;
+        /* Content Sections */
+        .seo-content-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow-md);
         }
         
-        /* Animation pour les icônes */
-        .fa-lightbulb, .fa-exclamation-triangle {
-            animation: pulse 2s infinite;
+        /* Category Cards */
+        .category-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         
-        /* Loading animation */
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .category-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Animations */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { 
+                opacity: 0; 
+                transform: translateY(20px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0) scale(1); 
+            }
         }
         
         .airdrop-card {
-            animation: fadeIn 0.5s ease-in;
+            animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
+            0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
         
@@ -393,41 +510,81 @@
             animation: float 3s ease-in-out infinite;
         }
         
-        /* Mobile optimizations */
+        /* Footer */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            color: var(--text-primary);
+            margin-top: 4rem;
+        }
+        
+        /* Loading */
+        .loading-spinner {
+            width: 3rem;
+            height: 3rem;
+            border-width: 3px;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--surface);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+        
+        /* Details Button */
+        .details-button {
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-secondary);
+        }
+        
+        .details-button:hover {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
             .hero-section {
-                padding: 2rem 0;
+                padding: 3rem 0 2rem;
             }
             
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-            
-            .filter-section {
-                min-width: 100%;
-            }
-            
-            .filters-container {
-                flex-direction: column;
+            .search-box {
+                padding: 1rem;
             }
             
             .seo-content-section {
                 padding: 1.5rem;
             }
             
-            .hero-buttons {
-                flex-direction: column;
-                gap: 0.75rem;
+            .category-card {
+                padding: 1.5rem;
             }
             
-            .hero-buttons .btn {
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
+            .airdrop-card {
+                padding: 1.25rem;
             }
         }
         
-        /* Print styles */
+        /* Print */
         @media print {
             .navbar, .hero-buttons, .search-box, .filters-container, footer {
                 display: none;
@@ -440,7 +597,7 @@
             }
         }
         
-        /* Accessibility improvements */
+        /* Accessibility */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -453,53 +610,9 @@
             border: 0;
         }
         
-        /* Focus styles for accessibility */
         a:focus, button:focus, input:focus {
             outline: 2px solid var(--primary);
             outline-offset: 2px;
-        }
-        
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #111827;
-                color: #f3f4f6;
-            }
-            
-            .airdrop-card, .filter-section, .search-box {
-                background: #1f2937;
-                border-color: #374151;
-                color: #f3f4f6;
-            }
-            
-            .description-text, .text-muted {
-                color: #9ca3af !important;
-            }
-            
-            .category-badge {
-                background: #374151;
-                color: #60a5fa;
-            }
-            
-            .seo-content-section {
-                background: #1f2937;
-            }
-            
-            .category-card {
-                background: #374151;
-            }
-            
-            .navbar {
-                background: #1f2937;
-            }
-            
-            .alert-info {
-                background: rgba(59, 130, 246, 0.2);
-            }
-            
-            .alert-warning {
-                background: rgba(245, 158, 11, 0.2);
-            }
         }
     </style>
 
@@ -516,7 +629,12 @@
             <a class="navbar-brand" href="/" aria-label="AirdropAlpha Home">
                 <i class="fas fa-gem me-2"></i>AirdropAlpha
             </a>
-            <div class="d-flex">
+            <div class="d-flex align-items-center">
+                <!-- Theme Toggle -->
+                <div class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-sun"></i>
+                    <i class="fas fa-moon"></i>
+                </div>
                 <button class="btn btn-primary" onclick="loadAirdrops()" id="refreshBtn" aria-label="Refresh airdrops list">
                     <i class="fas fa-sync-alt"></i> <span class="d-none d-md-inline">Refresh</span>
                 </button>
@@ -527,11 +645,16 @@
     <!-- Hero Section -->
     <div class="hero-section">
         <div class="container text-center">
-            <!-- H1 principal optimisé pour SEO -->
-            <h1 class="display-4 fw-bold mb-3">Cryptocurrency Airdrops</h1>
-            <p class="lead mb-4">Explore a trusted platform dedicated to verified crypto opportunities. Stay informed, discover new projects, and maximize your rewards with reliable and up-to-date information.</p>
-            
-            <!-- Hero Buttons -->
+            <h1 class="hero-title mb-3">Cryptocurrency Airdrops</h1>
+            <p class="lead mb-4 opacity-90">Explore a trusted platform dedicated to verified crypto opportunities. Stay informed, discover new projects, and maximize your rewards with reliable and up-to-date information.</p>
+            <div class="hero-buttons">
+                <a href="#airdropsContainer" class="btn btn-light btn-lg px-4 py-2" onclick="scrollToAirdrops()">
+                    <i class="fas fa-rocket me-2"></i>Explore Airdrops
+                </a>
+                <a href="#guideSection" class="btn btn-outline-light btn-lg px-4 py-2" onclick="scrollToGuide()">
+                    <i class="fas fa-book me-2"></i>Learn Guide
+                </a>
+            </div>
         </div>
     </div>
 
@@ -540,9 +663,15 @@
         <div class="search-container">
             <div class="search-box">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for a project, category, or description..." id="searchInput" aria-label="Search airdrops">
-                    <button class="btn btn-primary" onclick="searchAirdrops()" aria-label="Search">
-                        <i class="fas fa-search"></i>
+                    <span class="input-group-text bg-transparent border-end-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input type="text" class="form-control search-input border-start-0" 
+                           placeholder="Search for a project, category, or description..." 
+                           id="searchInput" 
+                           aria-label="Search airdrops">
+                    <button class="btn btn-primary px-4" onclick="searchAirdrops()" aria-label="Search">
+                        <i class="fas fa-search me-2"></i>Search
                     </button>
                 </div>
                 <div class="mt-3 text-center">
@@ -561,9 +690,11 @@
         <div class="filters-container">
             <!-- Type Filter -->
             <div class="filter-section">
-                <h6><i class="fas fa-tags me-2"></i>Filter by Type</h6>
+                <h6 class="fw-bold mb-3 d-flex align-items-center">
+                    <i class="fas fa-tags me-2 text-primary"></i>Filter by Type
+                </h6>
                 <div id="typeFiltersContainer" class="d-flex flex-wrap gap-2">
-                    <button class="btn btn-sm btn-outline-primary active filter-type" onclick="showAll()" aria-label="Show all airdrops">
+                    <button class="btn btn-sm filter-btn active" onclick="showAll()" aria-label="Show all airdrops">
                         <i class="fas fa-layer-group me-1"></i> All Airdrops
                     </button>
                 </div>
@@ -571,7 +702,9 @@
             
             <!-- Category Filter -->
             <div class="filter-section">
-                <h6><i class="fas fa-filter me-2"></i>Filter by Category</h6>
+                <h6 class="fw-bold mb-3 d-flex align-items-center">
+                    <i class="fas fa-filter me-2 text-primary"></i>Filter by Category
+                </h6>
                 <div id="categoryFiltersContainer" class="d-flex flex-wrap gap-2">
                     <!-- Category buttons will be generated here -->
                 </div>
@@ -579,23 +712,23 @@
         </div>
 
         <!-- Loading -->
-        <div id="loading" class="text-center my-5">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+        <div id="loading" class="text-center my-5 py-5">
+            <div class="spinner-border text-primary loading-spinner" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-            <p class="mt-3">Loading airdrops...</p>
+            <p class="mt-3 text-muted">Loading airdrops...</p>
         </div>
 
-        <!-- Airdrops Container (dynamique) -->
+        <!-- Airdrops Container -->
         <div id="airdropsContainer" class="row">
             <!-- Cards will be generated here by JavaScript -->
         </div>
 
         <!-- No Results -->
-        <div id="noResults" class="text-center my-5" style="display: none;">
+        <div id="noResults" class="text-center my-5 py-5" style="display: none;">
             <i class="fas fa-search fa-3x text-muted mb-3"></i>
-            <h3>No airdrops found</h3>
-            <p class="text-muted">Try adjusting your search filters</p>
+            <h3 class="mb-3">No airdrops found</h3>
+            <p class="text-muted mb-4">Try adjusting your search filters</p>
             <button class="btn btn-primary" onclick="showAll()">
                 <i class="fas fa-redo me-2"></i> Show All Airdrops
             </button>
@@ -603,24 +736,32 @@
         
         <!-- Section de contenu SEO additionnel -->
         <div id="guideSection" class="seo-content-section">
-            <h2><i class="fas fa-gem me-2 text-primary"></i>What are Crypto Airdrops?</h2>
-            <p>Crypto airdrops are free distributions of cryptocurrency tokens or coins to wallet addresses. They serve as a powerful marketing tool for blockchain projects to increase awareness, build communities, and decentralize token ownership among genuine users.</p>
+            <h2 class="fw-bold mb-4 d-flex align-items-center">
+                <i class="fas fa-gem me-3 text-primary"></i>What are Crypto Airdrops?
+            </h2>
+            <p class="mb-4">Crypto airdrops are free distributions of cryptocurrency tokens or coins to wallet addresses. They serve as a powerful marketing tool for blockchain projects to increase awareness, build communities, and decentralize token ownership among genuine users.</p>
             
             <p>At AirdropAlpha, we meticulously analyze each opportunity to ensure legitimacy and maximum reward potential. Our platform filters out scams and low-value distributions, focusing only on projects with real utility and growth potential.</p>
             
-            <h3 class="mt-5 mb-3"><i class="fas fa-gifts me-2"></i>Types of Crypto Airdrops</h3>
-            <div class="row mb-4">
+            <h3 class="mt-5 mb-4 d-flex align-items-center">
+                <i class="fas fa-gifts me-3 text-primary"></i>Types of Crypto Airdrops
+            </h3>
+            <div class="row mb-5">
                 <div class="col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center">
-                            <i class="fas fa-gift text-primary me-3 fa-lg floating-icon"></i>
+                            <div class="me-3 text-primary">
+                                <i class="fas fa-gift fa-2x floating-icon"></i>
+                            </div>
                             <div>
                                 <strong>Standard Airdrops</strong>
                                 <p class="mb-0 text-muted small">Free tokens distributed to wallet holders based on specific criteria like early adoption or community participation</p>
                             </div>
                         </li>
                         <li class="list-group-item d-flex align-items-center">
-                            <i class="fas fa-tasks text-success me-3 fa-lg floating-icon"></i>
+                            <div class="me-3 text-success">
+                                <i class="fas fa-tasks fa-2x floating-icon"></i>
+                            </div>
                             <div>
                                 <strong>Bounty Airdrops</strong>
                                 <p class="mb-0 text-muted small">Require completing tasks like social media engagement, content creation, or referrals</p>
@@ -631,14 +772,18 @@
                 <div class="col-md-6">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center">
-                            <i class="fas fa-coins text-warning me-3 fa-lg floating-icon"></i>
+                            <div class="me-3 text-warning">
+                                <i class="fas fa-coins fa-2x floating-icon"></i>
+                            </div>
                             <div>
                                 <strong>Holder Airdrops</strong>
                                 <p class="mb-0 text-muted small">Distributed to existing token holders of a related project as a reward for loyalty</p>
                             </div>
                         </li>
                         <li class="list-group-item d-flex align-items-center">
-                            <i class="fas fa-crown text-danger me-3 fa-lg floating-icon"></i>
+                            <div class="me-3 text-danger">
+                                <i class="fas fa-crown fa-2x floating-icon"></i>
+                            </div>
                             <div>
                                 <strong>Exclusive Airdrops</strong>
                                 <p class="mb-0 text-muted small">Limited to early adopters, community members, or specific wallet addresses</p>
@@ -648,87 +793,101 @@
                 </div>
             </div>
             
-            <h3 class="mt-5 mb-4"><i class="fas fa-layer-group me-2"></i>Popular Airdrop Categories</h3>
+            <h3 class="mt-5 mb-4 d-flex align-items-center">
+                <i class="fas fa-layer-group me-3 text-primary"></i>Popular Airdrop Categories
+            </h3>
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon layer2 mx-auto">
-                            <i class="fas fa-layer-group text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-primary p-3 mb-2">
+                                <i class="fas fa-layer-group text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Layer 2 Solutions</h4>
+                            <p class="text-muted small">Ethereum scaling solutions offering faster transactions and lower gas fees with substantial airdrop potential.</p>
                         </div>
-                        <h4 class="text-center mb-3">Layer 2 Solutions</h4>
-                        <p class="text-muted text-center">Ethereum scaling solutions offering faster transactions and lower gas fees with substantial airdrop potential.</p>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon defi mx-auto">
-                            <i class="fas fa-chart-line text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-success p-3 mb-2">
+                                <i class="fas fa-chart-line text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">DeFi Protocols</h4>
+                            <p class="text-muted small">Decentralized finance platforms revolutionizing lending, borrowing, trading, and yield farming with innovative tokenomics.</p>
                         </div>
-                        <h4 class="text-center mb-3">DeFi Protocols</h4>
-                        <p class="text-muted text-center">Decentralized finance platforms revolutionizing lending, borrowing, trading, and yield farming with innovative tokenomics.</p>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon nft mx-auto">
-                            <i class="fas fa-images text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-warning p-3 mb-2">
+                                <i class="fas fa-images text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">NFT Projects</h4>
+                            <p class="text-muted small">Digital collectibles, art, and utility NFTs representing unique ownership with community rewards and ecosystem tokens.</p>
                         </div>
-                        <h4 class="text-center mb-3">NFT Projects</h4>
-                        <p class="text-muted text-center">Digital collectibles, art, and utility NFTs representing unique ownership with community rewards and ecosystem tokens.</p>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon infra mx-auto">
-                            <i class="fas fa-server text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-info p-3 mb-2">
+                                <i class="fas fa-server text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Infrastructure</h4>
+                            <p class="text-muted small">Foundational blockchain technologies enabling interoperability and modular architecture for next-gen dApps.</p>
                         </div>
-                        <h4 class="text-center mb-3">Infrastructure</h4>
-                        <p class="text-muted text-center">Foundational blockchain technologies enabling interoperability and modular architecture for next-gen dApps.</p>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon gaming mx-auto">
-                            <i class="fas fa-gamepad text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-danger p-3 mb-2">
+                                <i class="fas fa-gamepad text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">Gaming</h4>
+                            <p class="text-muted small">Play-to-earn crypto games where players earn real value through gameplay, asset ownership, and in-game economies.</p>
                         </div>
-                        <h4 class="text-center mb-3">Gaming</h4>
-                        <p class="text-muted text-center">Play-to-earn crypto games where players earn real value through gameplay, asset ownership, and in-game economies.</p>
                     </div>
                 </div>
                 
                 <div class="col-lg-4 col-md-6">
-                    <div class="category-card p-4">
-                        <div class="category-icon social mx-auto">
-                            <i class="fas fa-users text-white fa-2x"></i>
+                    <div class="category-card">
+                        <div class="text-center mb-3">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-gradient-secondary p-3 mb-2">
+                                <i class="fas fa-users text-white fa-2x"></i>
+                            </div>
+                            <h4 class="fw-bold mb-2">SocialFi</h4>
+                            <p class="text-muted small">Decentralized social networks combining social media engagement with financial incentives and user ownership models.</p>
                         </div>
-                        <h4 class="text-center mb-3">SocialFi</h4>
-                        <p class="text-muted text-center">Decentralized social networks combining social media engagement with financial incentives and user ownership models.</p>
                     </div>
                 </div>
             </div>
             
             <div class="alert alert-info mt-5">
-                <div class="d-flex">
-                    <i class="fas fa-lightbulb fa-3x me-3 text-info"></i>
+                <div class="d-flex align-items-start">
+                    <i class="fas fa-lightbulb fa-2x me-3 text-primary mt-1"></i>
                     <div>
-                        <h4 class="alert-heading h5 mb-3">How to Maximize Your Airdrop Rewards</h4>
-                        <div class="row mt-2">
+                        <h4 class="alert-heading fw-bold mb-3">How to Maximize Your Airdrop Rewards</h4>
+                        <div class="row">
                             <div class="col-md-6">
                                 <ul class="mb-3 mb-md-0">
-                                    <li><strong>Participate Early:</strong> Early participants often receive larger allocations and bonus rewards</li>
-                                    <li><strong>Complete All Tasks:</strong> Follow project requirements carefully for maximum qualification</li>
-                                    <li><strong>Use Secure Wallets:</strong> Never share private keys or send money for free distributions</li>
+                                    <li class="mb-2"><strong>Participate Early:</strong> Early participants often receive larger allocations and bonus rewards</li>
+                                    <li class="mb-2"><strong>Complete All Tasks:</strong> Follow project requirements carefully for maximum qualification</li>
+                                    <li class="mb-2"><strong>Use Secure Wallets:</strong> Never share private keys or send money for free distributions</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
                                 <ul class="mb-0">
-                                    <li><strong>Stay Updated:</strong> Follow official channels for announcements and deadlines</li>
-                                    <li><strong>Diversify Strategy:</strong> Engage with multiple legitimate projects across categories</li>
-                                    <li><strong>Document Activity:</strong> Maintain records for potential tax reporting requirements</li>
+                                    <li class="mb-2"><strong>Stay Updated:</strong> Follow official channels for announcements and deadlines</li>
+                                    <li class="mb-2"><strong>Diversify Strategy:</strong> Engage with multiple legitimate projects across categories</li>
+                                    <li class="mb-2"><strong>Document Activity:</strong> Maintain records for potential tax reporting requirements</li>
                                 </ul>
                             </div>
                         </div>
@@ -737,17 +896,17 @@
             </div>
             
             <div class="alert alert-warning mt-4">
-                <div class="d-flex">
-                    <i class="fas fa-exclamation-triangle fa-3x me-3 text-warning"></i>
+                <div class="d-flex align-items-start">
+                    <i class="fas fa-exclamation-triangle fa-2x me-3 text-warning mt-1"></i>
                     <div>
-                        <h4 class="alert-heading h5 mb-2">Important Disclaimer & Security Tips</h4>
-                        <p class="mb-2">While airdrops offer exciting opportunities, they also carry inherent risks. Always:</p>
+                        <h4 class="alert-heading fw-bold mb-3">Important Disclaimer & Security Tips</h4>
+                        <p class="mb-3">While airdrops offer exciting opportunities, they also carry inherent risks. Always:</p>
                         <ul class="mb-0">
-                            <li>Conduct thorough research on each project's legitimacy</li>
-                            <li>Verify official project links and announcements</li>
-                            <li>Never send cryptocurrency to claim free airdrops</li>
-                            <li>Use dedicated wallets for airdrop participation</li>
-                            <li>Remember that AirdropAlpha provides informational content only, not financial advice</li>
+                            <li class="mb-2">Conduct thorough research on each project's legitimacy</li>
+                            <li class="mb-2">Verify official project links and announcements</li>
+                            <li class="mb-2">Never send cryptocurrency to claim free airdrops</li>
+                            <li class="mb-2">Use dedicated wallets for airdrop participation</li>
+                            <li class="mb-0">Remember that AirdropAlpha provides informational content only, not financial advice</li>
                         </ul>
                     </div>
                 </div>
@@ -756,34 +915,46 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5 mt-5">
+    <footer class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 mb-4 mb-md-0">
-                    <h3 class="mb-3"><i class="fas fa-gem me-2 text-primary"></i>AirdropAlpha</h3>
+                    <h3 class="fw-bold mb-3 d-flex align-items-center">
+                        <i class="fas fa-gem me-2 text-primary"></i>AirdropAlpha
+                    </h3>
                     <p class="mb-3">Your trusted platform for discovering and participating in verified cryptocurrency airdrops. We analyze opportunities to ensure legitimacy and maximize reward potential.</p>
-                    <p class="small text-muted mb-0"><i class="fas fa-sync-alt me-1"></i> Airdrops updated daily</p>
+                    <p class="small text-muted mb-0 d-flex align-items-center">
+                        <i class="fas fa-sync-alt me-2"></i> Airdrops updated daily
+                    </p>
                 </div>
                 <div class="col-md-6 text-md-end">
-                    <h4 class="mb-3">Stay Updated</h4>
+                    <h4 class="fw-bold mb-3">Stay Updated</h4>
                     <p class="mb-3">Follow us for the latest airdrop opportunities and updates:</p>
                     <div class="d-flex justify-content-md-end gap-3 mb-4">
-                        <a href="#" class="text-white fs-4" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white fs-4" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="#" class="text-white fs-4" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                        <a href="#" class="text-white fs-4" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-decoration-none fs-4" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none fs-4" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none fs-4" aria-label="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="text-decoration-none fs-4" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                     </div>
                     <div class="d-flex justify-content-md-end gap-3">
-                        <a href="#guideSection" class="text-white small" onclick="scrollToGuide()">Airdrop Guide</a>
-                        <a href="#" class="text-white small">Privacy Policy</a>
-                        <a href="#" class="text-white small">Terms of Service</a>
+                        <a href="#guideSection" class="text-decoration-none small" onclick="scrollToGuide()">Airdrop Guide</a>
+                        <a href="#" class="text-decoration-none small">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none small">Terms of Service</a>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4 pt-4 border-top border-secondary">
+            <div class="row mt-4 pt-4 border-top border-color">
                 <div class="col-12 text-center">
-                    <p class="small text-muted mb-2">
-                        <i class="fas fa-exclamation-triangle me-1"></i>
+                    <p class="small text-muted mb-2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
                         Cryptocurrency investments carry risks. Always conduct your own research and consult with financial advisors. AirdropAlpha does not provide financial advice.
                     </p>
                     <p class="small text-muted mb-0">
@@ -801,6 +972,33 @@
         let allAirdrops = [];
         let allCategories = new Set();
         let allTypes = new Set();
+        
+        // Theme Management
+        function initTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+            
+            document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        }
+        
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (theme === 'dark') {
+                themeToggle.classList.add('active');
+            } else {
+                themeToggle.classList.remove('active');
+            }
+            
+            localStorage.setItem('theme', theme);
+        }
+        
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        }
         
         // Icons for categories
         const categoryIcons = {
@@ -871,6 +1069,7 @@
         // Load data on startup
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 AirdropAlpha initialized');
+            initTheme();
             loadAirdrops();
             
             // Initialize search input
@@ -976,11 +1175,16 @@
                 return [];
             }
             
-            // First row contains headers
             const headers = data[0];
             const result = [];
             
-            // Create column mapping
+            console.log('📋 HEADERS TROUVÉS DANS GOOGLE SHEETS:');
+            for (const [letter, columnName] of Object.entries(headers)) {
+                if (columnName && columnName.trim() !== '') {
+                    console.log(`  ${letter}: "${columnName.trim()}"`);
+                }
+            }
+            
             const columnMap = {};
             for (const [letter, columnName] of Object.entries(headers)) {
                 if (columnName && columnName.trim() !== '') {
@@ -988,7 +1192,6 @@
                 }
             }
             
-            // Convert following rows
             for (let i = 1; i < data.length; i++) {
                 const row = data[i];
                 const airdrop = {};
@@ -1002,9 +1205,8 @@
                     }
                 }
                 
-                // Check it's not an empty row
                 if (hasData && airdrop.Nom && airdrop.Nom.trim() !== '') {
-                    // Generate logo URL from domain if not provided
+                    
                     let logoUrl = airdrop.Logo;
                     if (!logoUrl && airdrop.URL) {
                         try {
@@ -1016,25 +1218,28 @@
                         }
                     }
                     
-                    // Format score
                     let score = airdrop.Score || '0';
                     if (score && !isNaN(score)) {
                         score = Math.min(100, Math.max(0, parseInt(score)));
                     }
                     
+                    // MAPPING EXACT SELON VOTRE STRUCTURE
                     result.push({
-                        Name: airdrop.Nom,
-                        URL: airdrop.URL || '#',
-                        Expiration: airdrop['Expire le'] || '-',
-                        Commission: airdrop.Commission ? `$${airdrop.Commission}M` : '',
-                        Category: airdrop.Catégorie || '',
-                        Reward: airdrop.Récompense || 'Not specified',
-                        Effort: airdrop.Effort || 'Medium',
-                        Score: score,
-                        Notes: airdrop.Notes || 'No description available',
-                        Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128',
-                        Type: airdrop.Type || '',
-                        RowOrder: i - 1 // ⬅️ AJOUT IMPORTANT : Garder l'ordre des lignes
+                        Name: airdrop.Nom || '',                    // colonne B
+                        URL: airdrop.URL || '#',                    // colonne C
+                        Backers: airdrop.Backer || '',              // colonne E
+                        Commission: airdrop.Commission ? `$${airdrop.Commission}M` : '', // colonne F
+                        Expiration: airdrop['Expire le'] || '-',    // colonne H
+                        Category: airdrop.Catégorie || '',          // colonne I
+                        Reward: airdrop.Récompense || 'Not specified', // colonne J
+                        Effort: airdrop.Effort || 'Medium',         // colonne K
+                        Score: score,                               // colonne L
+                        Notes: airdrop.Notes || 'No description available', // colonne M
+                        Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128', // colonne N
+                        Type: airdrop.Type || '',                   // colonne O
+                        LongDescription: airdrop['Description Longue'] || '', // colonne P
+                        HowToParticipate: airdrop['How to Participate'] || '', // colonne Q
+                        RowOrder: i - 1
                     });
                 }
             }
@@ -1104,7 +1309,7 @@
                 const displayName = type.charAt(0).toUpperCase() + type.slice(1);
                 
                 const button = document.createElement('button');
-                button.className = `btn btn-sm btn-outline-${colorClass} filter-type`;
+                button.className = `btn btn-sm filter-btn`;
                 button.innerHTML = `<i class="fas ${iconClass} me-1"></i> ${displayName}`;
                 button.onclick = () => filterByType(type);
                 button.setAttribute('aria-label', `Filter by ${displayName}`);
@@ -1127,7 +1332,7 @@
                 const colorClass = categoryColors[categoryLower] || 'dark';
                 
                 const button = document.createElement('button');
-                button.className = `btn btn-sm btn-outline-${colorClass} filter-category`;
+                button.className = `btn btn-sm filter-btn`;
                 button.innerHTML = `<i class="fas ${iconClass} me-1"></i> ${category}`;
                 button.onclick = () => filterByCategory(category);
                 button.setAttribute('aria-label', `Filter by ${category}`);
@@ -1147,14 +1352,11 @@
             
             document.getElementById('noResults').style.display = 'none';
             
-            // ⬅️ MODIFICATION IMPORTANTE : Trier par ordre des lignes (RowOrder) au lieu du score
-            // Garder l'ordre original du Google Sheet
+            // Garder l'ordre original
             airdrops.sort((a, b) => {
-                // Si RowOrder existe, l'utiliser pour garder l'ordre des lignes
                 if (a.RowOrder !== undefined && b.RowOrder !== undefined) {
                     return a.RowOrder - b.RowOrder;
                 }
-                // Sinon, garder l'ordre actuel (fallback)
                 return 0;
             });
             
@@ -1167,14 +1369,14 @@
                         const today = new Date();
                         
                         if (expDate < today) {
-                            expirationBadge = `<span class="expiration-badge"><i class="fas fa-clock me-1"></i>Expired</span>`;
+                            expirationBadge = `<span class="badge-type bg-danger text-white"><i class="fas fa-clock me-1"></i>Expired</span>`;
                         } else {
                             const diffTime = expDate - today;
                             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                            expirationBadge = `<span class="expiration-badge"><i class="fas fa-clock me-1"></i>${diffDays} days left</span>`;
+                            expirationBadge = `<span class="badge-type bg-warning text-dark"><i class="fas fa-clock me-1"></i>${diffDays} days left</span>`;
                         }
                     } catch (e) {
-                        expirationBadge = `<span class="expiration-badge"><i class="fas fa-clock me-1"></i>${airdrop.Expiration}</span>`;
+                        expirationBadge = `<span class="badge-type bg-secondary text-white"><i class="fas fa-clock me-1"></i>${airdrop.Expiration}</span>`;
                     }
                 }
                 
@@ -1198,19 +1400,40 @@
                     const types = airdrop.Type.split(',').map(type => type.trim().toLowerCase());
                     typeBadges = types.filter(type => type).map(type => {
                         const displayName = type.charAt(0).toUpperCase() + type.slice(1);
-                        const badgeClass = type === 'free' ? 'badge-free' : 'badge-hot';
+                        const badgeClass = `badge-${type}`;
                         
-                        return `<span class="badge-type ${badgeClass} me-2">${displayName}</span>`;
+                        return `<span class="badge-type ${badgeClass} me-2">
+                            <i class="fas ${typeIcons[type] || 'fa-tag'} me-1"></i>${displayName}
+                        </span>`;
                     }).join('');
                 }
                 
+                // Afficher les backers
+                let backersBadges = '';
+                if (airdrop.Backers && airdrop.Backers.trim() !== '' && airdrop.Backers !== '-') {
+                    const backers = airdrop.Backers.split(',').map(b => b.trim()).filter(b => b !== '');
+                    if (backers.length > 0) {
+                        backersBadges = `
+                            <div class="mt-2 mb-2">
+                                <div class="d-flex flex-wrap">
+                                    ${backers.map(backer => 
+                                        `<span class="backer-badge-index">
+                                            <i class="fas fa-users me-1"></i>${backer}
+                                        </span>`
+                                    ).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                }
+                
                 // Determine effort color
-                let effortColor = 'bg-warning';
+                let effortColor = 'bg-warning text-dark';
                 const effortLower = (airdrop.Effort || '').toLowerCase();
                 if (effortLower.includes('low') || effortLower.includes('faible')) {
-                    effortColor = 'bg-success';
+                    effortColor = 'bg-success text-white';
                 } else if (effortLower.includes('high') || effortLower.includes('élevé')) {
-                    effortColor = 'bg-danger';
+                    effortColor = 'bg-danger text-white';
                 }
                 
                 // Format score with star rating
@@ -1220,7 +1443,11 @@
                 
                 return `
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="airdrop-card h-100 d-flex flex-column">
+                        <div class="airdrop-card h-100 d-flex flex-column" onclick="openAirdropDetails(${JSON.stringify(airdrop).replace(/"/g, '&quot;').replace(/'/g, "\\'")})" 
+                             style="cursor: pointer;" 
+                             title="Click to view details of ${airdrop.Name}"
+                             data-airdrop-id="airdrop-${index}">
+                            
                             <!-- Header -->
                             <div class="d-flex justify-content-between align-items-start mb-3">
                                 <div class="d-flex align-items-center">
@@ -1243,9 +1470,12 @@
                                 </div>
                             </div>
                             
+                            <!-- Backers -->
+                            ${backersBadges}
+                            
                             <!-- Description -->
                             <div class="mb-3 flex-grow-1">
-                                <p class="description-text" title="${airdrop.Notes}">
+                                <p class="text-muted mb-2 small">
                                     <i class="fas fa-info-circle me-1"></i>
                                     ${airdrop.Notes || 'No description available'}
                                 </p>
@@ -1265,19 +1495,34 @@
                             
                             <!-- Effort & Score -->
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <span class="badge ${effortColor}">
-                                    <i class="fas fa-tasks me-1"></i> Effort: ${airdrop.Effort}
+                                <span class="badge ${effortColor} px-3 py-1">
+                                    <i class="fas fa-tasks me-1"></i> ${airdrop.Effort}
                                 </span>
                                 <small class="text-muted" title="Community Score">
                                     <i class="fas fa-star text-warning me-1"></i> ${score}/100
                                 </small>
                             </div>
                             
-                            <!-- Button -->
-                            <div class="d-grid mt-auto">
-                                <a href="${airdrop.URL}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" onclick="trackAirdropClick('${airdrop.Name.replace(/'/g, "\\'")}')">
+                            <!-- Buttons -->
+                            <div class="d-grid gap-2 mt-auto">
+                                <a href="${airdrop.URL}" target="_blank" rel="noopener noreferrer" 
+                                   class="btn btn-primary" 
+                                   onclick="trackAirdropClick('${airdrop.Name.replace(/'/g, "\\'")}'); event.stopPropagation();">
                                     <i class="fas fa-external-link-alt me-2"></i> Participate Now
                                 </a>
+                                
+                                <!-- Bouton pour voir les détails -->
+                                <button class="btn btn-outline-secondary details-button" 
+                                        onclick="openAirdropDetails(${JSON.stringify(airdrop).replace(/"/g, '&quot;').replace(/'/g, "\\'")}); event.stopPropagation();">
+                                    <i class="fas fa-info-circle me-2"></i> View Details
+                                </button>
+                            </div>
+                            
+                            <!-- Indicateur cliquable -->
+                            <div class="text-center mt-2">
+                                <small class="text-muted">
+                                    <i class="fas fa-mouse-pointer me-1"></i> Click card for more details
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -1285,6 +1530,95 @@
             }).join('');
             
             console.log(`🎨 Displayed ${airdrops.length} airdrops`);
+        }
+        
+        // NOUVELLE FONCTION : Ouvrir les détails de l'airdrop
+        function openAirdropDetails(airdrop) {
+            try {
+                // Ajouter un timestamp pour éviter le cache
+                airdrop.timestamp = new Date().getTime();
+                
+                // DEBUG: Vérifier les backers avant envoi
+                console.log('🔍 DEBUG avant ouverture détails:');
+                console.log('  Nom:', airdrop.Name);
+                console.log('  Backers:', airdrop.Backers);
+                console.log('  Toutes les clés:', Object.keys(airdrop));
+                
+                // Sauvegarder l'airdrop dans localStorage
+                localStorage.setItem('currentAirdrop', JSON.stringify(airdrop));
+                localStorage.setItem('currentAirdropTime', new Date().getTime());
+                
+                // Ouvrir la page de détails dans un nouvel onglet
+                const detailsUrl = 'airdrop-details.html';
+                window.open(detailsUrl, '_blank');
+                
+                // Track analytics
+                if (typeof gtag === 'function') {
+                    gtag('event', 'view_details', {
+                        'event_category': 'engagement',
+                        'event_label': airdrop.Name,
+                        'value': 1
+                    });
+                }
+                
+            } catch (error) {
+                console.error('Error opening airdrop details:', error);
+                showAirdropModal(airdrop);
+            }
+        }
+        
+        // Fonction fallback: Modal si l'ouverture de nouvelle fenêtre échoue
+        function showAirdropModal(airdrop) {
+            // Créer une modal Bootstrap pour afficher les détails
+            const modalHtml = `
+                <div class="modal fade" id="airdropModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">${airdrop.Name}</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <img src="${airdrop.Logo}" alt="${airdrop.Name} logo" class="img-fluid mb-3" style="max-width: 150px;">
+                                        <div class="reward-text">${airdrop.Reward}</div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h6>Description</h6>
+                                        <p>${airdrop.Notes || 'No description available'}</p>
+                                        
+                                        <h6 class="mt-3">Details</h6>
+                                        <ul class="list-unstyled">
+                                            <li><strong>Category:</strong> ${airdrop.Category || 'N/A'}</li>
+                                            <li><strong>Effort:</strong> ${airdrop.Effort || 'Medium'}</li>
+                                            <li><strong>Score:</strong> ${airdrop.Score}/100</li>
+                                            <li><strong>Expiration:</strong> ${airdrop.Expiration || 'No expiration'}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="${airdrop.URL}" target="_blank" class="btn btn-primary">
+                                    <i class="fas fa-external-link-alt me-2"></i> Visit Official Site
+                                </a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Ajouter la modal au DOM si elle n'existe pas
+            let modalElement = document.getElementById('airdropModal');
+            if (!modalElement) {
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                modalElement = document.getElementById('airdropModal');
+            }
+            
+            // Afficher la modal
+            const modal = new bootstrap.Modal(modalElement);
+            modal.show();
         }
         
         function trackAirdropClick(airdropName) {
@@ -1300,16 +1634,14 @@
         
         function showAll() {
             // Remove active class from all filter buttons
-            document.querySelectorAll('.filter-type, .filter-category').forEach(btn => {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                btn.classList.remove('active-filter');
             });
             
             // Add active class to "All" button
             const allButton = document.querySelector('button[onclick="showAll()"]');
             if (allButton) {
                 allButton.classList.add('active');
-                allButton.classList.add('active-filter');
             }
             
             displayAirdrops(allAirdrops);
@@ -1328,14 +1660,12 @@
         
         function filterByType(type) {
             // Remove active class from all filter buttons
-            document.querySelectorAll('.filter-type, .filter-category').forEach(btn => {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                btn.classList.remove('active-filter');
             });
             
             // Add active class to clicked button
             event.target.classList.add('active');
-            event.target.classList.add('active-filter');
             
             const filtered = allAirdrops.filter(airdrop => {
                 const airdropType = (airdrop.Type || '').toLowerCase();
@@ -1355,14 +1685,12 @@
         
         function filterByCategory(category) {
             // Remove active class from all filter buttons
-            document.querySelectorAll('.filter-type, .filter-category').forEach(btn => {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                btn.classList.remove('active-filter');
             });
             
             // Add active class to clicked button
             event.target.classList.add('active');
-            event.target.classList.add('active-filter');
             
             const filtered = allAirdrops.filter(airdrop => {
                 const categories = (airdrop.Category || '').toLowerCase();
@@ -1392,10 +1720,14 @@
                 const name = (airdrop.Name || '').toLowerCase();
                 const description = (airdrop.Notes || '').toLowerCase();
                 const categories = (airdrop.Category || '').toLowerCase();
+                const longDescription = (airdrop.LongDescription || '').toLowerCase();
+                const backers = (airdrop.Backers || '').toLowerCase();
                 
                 return name.includes(searchTerm) || 
                        description.includes(searchTerm) || 
-                       categories.includes(searchTerm);
+                       categories.includes(searchTerm) ||
+                       longDescription.includes(searchTerm) ||
+                       backers.includes(searchTerm);
             });
             
             displayAirdrops(filtered);
@@ -1447,19 +1779,13 @@
             `;
         }
         
-        function scrollToFilters() {
-            const filtersContainer = document.querySelector('.filters-container');
-            if (filtersContainer) {
-                filtersContainer.scrollIntoView({ 
+        function scrollToAirdrops() {
+            const airdropsContainer = document.getElementById('airdropsContainer');
+            if (airdropsContainer) {
+                airdropsContainer.scrollIntoView({ 
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Add visual feedback
-                filtersContainer.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.3)';
-                setTimeout(() => {
-                    filtersContainer.style.boxShadow = '';
-                }, 1000);
             }
         }
         
@@ -1470,12 +1796,6 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Add visual feedback
-                guideSection.style.boxShadow = '0 0 0 3px rgba(59, 130, 246, 0.3)';
-                setTimeout(() => {
-                    guideSection.style.boxShadow = '';
-                }, 1000);
             }
         }
         
@@ -1492,107 +1812,12 @@
                     "Score": "95",
                     "Commission": "$5M",
                     "URL": "https://layerzero.network",
-                    "Notes": "Omnichain interoperability protocol connecting 50+ blockchains. Early users may receive significant airdrop rewards for bridge usage.",
+                    "Notes": "Omnichain interoperability protocol connecting 50+ blockchains.",
+                    "Backers": "Binance Labs, Coinbase Ventures",
+                    "LongDescription": "LayerZero est un protocole d'interopérabilité omnichain...",
+                    "HowToParticipate": "1. Visit the LayerZero website\n2. Connect your wallet\n3. Complete the required tasks\n4. Wait for token distribution",
                     "Expiration": "2024-06-30",
                     "RowOrder": 0
-                },
-                {
-                    "Name": "zkSync",
-                    "Logo": "https://www.google.com/s2/favicons?domain=zksync.io&sz=128",
-                    "Type": "Free,New,Hot",
-                    "Category": "Layer 2,ZK-Rollup,Scaling",
-                    "Reward": "$200-$2000+",
-                    "Effort": "Low",
-                    "Score": "92",
-                    "Commission": "$5M",
-                    "URL": "https://zksync.io",
-                    "Notes": "ZK-Rollup scaling solution for Ethereum with massive adoption. Make transactions and interact with dApps to qualify.",
-                    "Expiration": "2024-05-31",
-                    "RowOrder": 1
-                },
-                {
-                    "Name": "Starknet",
-                    "Logo": "https://www.google.com/s2/favicons?domain=starknet.io&sz=128",
-                    "Type": "Hot,Verified",
-                    "Category": "Layer 2,ZK-Rollup,Infrastructure",
-                    "Reward": "$300-$3000+",
-                    "Effort": "Medium",
-                    "Score": "88",
-                    "Commission": "$3M",
-                    "URL": "https://starknet.io",
-                    "Notes": "Validity rollup for Ethereum using STARK proofs. Developers and active users may qualify for substantial rewards.",
-                    "Expiration": "2024-04-30",
-                    "RowOrder": 2
-                },
-                {
-                    "Name": "Arbitrum",
-                    "Logo": "https://www.google.com/s2/favicons?domain=arbitrum.io&sz=128",
-                    "Type": "Verified,Free",
-                    "Category": "Layer 2,Optimistic Rollup,DeFi",
-                    "Reward": "$50-$500+",
-                    "Effort": "Low",
-                    "Score": "85",
-                    "Commission": "$1M",
-                    "URL": "https://arbitrum.io",
-                    "Notes": "Leading optimistic rollup with massive DeFi ecosystem. Active users may receive additional token distributions.",
-                    "Expiration": "Indefinite",
-                    "RowOrder": 3
-                },
-                {
-                    "Name": "Celestia",
-                    "Logo": "https://www.google.com/s2/favicons?domain=celestia.org&sz=128",
-                    "Type": "Hot,Free,Community",
-                    "Category": "Infrastructure,Modular,Layer 1",
-                    "Reward": "$100-$1000+",
-                    "Effort": "Low",
-                    "Score": "82",
-                    "Commission": "$2M",
-                    "URL": "https://celestia.org",
-                    "Notes": "Modular blockchain network enabling easy deployment of blockchains. Early testnet participants may be rewarded.",
-                    "Expiration": "2024-03-31",
-                    "RowOrder": 4
-                },
-                {
-                    "Name": "Polygon zkEVM",
-                    "Logo": "https://www.google.com/s2/favicons?domain=polygon.technology&sz=128",
-                    "Type": "New,Hot,Verified",
-                    "Category": "Layer 2,ZK-Rollup,Scaling",
-                    "Reward": "$100-$800+",
-                    "Effort": "Medium",
-                    "Score": "78",
-                    "Commission": "$1.5M",
-                    "URL": "https://polygon.technology",
-                    "Notes": "ZK-Rollup scaling solution by Polygon. Early adopters and active users may receive token rewards.",
-                    "Expiration": "2024-07-31",
-                    "RowOrder": 5
-                },
-                {
-                    "Name": "Scroll",
-                    "Logo": "https://www.google.com/s2/favicons?domain=scroll.io&sz=128",
-                    "Type": "Upcoming,Hot",
-                    "Category": "Layer 2,ZK-Rollup,Infrastructure",
-                    "Reward": "$150-$1200+",
-                    "Effort": "Medium",
-                    "Score": "75",
-                    "Commission": "$1M",
-                    "URL": "https://scroll.io",
-                    "Notes": "Native zkEVM scaling solution for Ethereum. Testnet participants may qualify for mainnet airdrop.",
-                    "Expiration": "2024-08-31",
-                    "RowOrder": 6
-                },
-                {
-                    "Name": "Base",
-                    "Logo": "https://www.google.com/s2/favicons?domain=base.org&sz=128",
-                    "Type": "New,Free,Verified",
-                    "Category": "Layer 2,Optimistic Rollup,Infrastructure",
-                    "Reward": "$50-$400+",
-                    "Effort": "Low",
-                    "Score": "70",
-                    "Commission": "$0.8M",
-                    "URL": "https://base.org",
-                    "Notes": "Coinbase's Layer 2 solution built on Optimism. Early ecosystem participants may receive rewards.",
-                    "Expiration": "2024-09-30",
-                    "RowOrder": 7
                 }
             ];
         }
@@ -1621,14 +1846,6 @@
                 loadAirdrops();
             }
         }, 10 * 60 * 1000);
-        
-        // Initialize tooltips
-        document.addEventListener('DOMContentLoaded', function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-        });
     </script>
 
     <!-- Bootstrap JS -->
