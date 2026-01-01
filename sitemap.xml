@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://airdropalpha.vercel.app/</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://airdropalpha.vercel.app/" />
   </url>
-  
   <url>
     <loc>https://airdropalpha.vercel.app/airdrop-details.html</loc>
     <lastmod>2025-12-21</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://airdropalpha.vercel.app/airdrop-details.html" />
   </url>
-
 </urlset>
