@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" prefix="og: https://ogp.me/ns#">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +15,7 @@
     <meta name="language" content="en">
     <meta name="revisit-after" content="7 days">
     
-    <!-- Canonical URL (AJOUTÉ) -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://airdropalpha.vercel.app/" />
     
     <!-- Open Graph -->
@@ -28,8 +28,9 @@
     <meta property="og:url" content="https://airdropalpha.vercel.app/">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="AirdropAlpha">
+    <meta property="og:locale" content="en_US">
     
-    <!-- Twitter -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="AirdropAlpha - Free Crypto Airdrops">
     <meta name="twitter:description" content="Curated list of cryptocurrency airdrops. Maximize your rewards with verified opportunities.">
@@ -38,6 +39,32 @@
     <meta name="twitter:creator" content="@AirdropAlpha">
     
     <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "AirdropAlpha",
+      "url": "https://airdropalpha.vercel.app/",
+      "description": "Trusted platform for discovering and participating in verified cryptocurrency airdrops",
+      "publisher": {
+        "@type": "Organization",
+        "name": "AirdropAlpha",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://airdropalpha.vercel.app/logo.png",
+          "width": 512,
+          "height": 512
+        }
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://airdropalpha.vercel.app/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "inLanguage": "en-US"
+    }
+    </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,6 +98,21 @@
     }
     </script>
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Mobile Meta -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AirdropAlpha">
+    <meta name="application-name" content="AirdropAlpha">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="format-detection" content="telephone=no">
+    
     <!-- Preconnect & Preload -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,7 +124,6 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
