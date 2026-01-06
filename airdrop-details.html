@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Airdrop Details - AirdropAlpha</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Detailed information about cryptocurrency airdrop including rewards, participation steps, and security tips.">
+    <!-- Dynamic Meta Tags will be set by JavaScript -->
+    <meta name="description" content="Cryptocurrency airdrop details and participation guide">
     <meta name="robots" content="index, follow, max-snippet:150, max-image-preview:large">
     <meta name="googlebot" content="index, follow">
     <meta name="bingbot" content="index, follow">
@@ -17,42 +17,45 @@
     <link rel="canonical" href="https://airdropalpha.vercel.app/airdrop-details.html" />
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Airdrop Details - Comprehensive Guide | AirdropAlpha">
-    <meta property="og:description" content="Complete guide to cryptocurrency airdrops with detailed participation instructions.">
     <meta property="og:type" content="article">
     <meta property="og:image" content="https://airdropalpha.vercel.app/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Airdrop Details - AirdropAlpha">
     <meta property="og:url" content="https://airdropalpha.vercel.app/airdrop-details.html">
     <meta property="og:site_name" content="AirdropAlpha">
     <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2024-12-21">
+    <meta property="article:modified_time" content="2024-12-21">
+    <meta property="article:author" content="AirdropAlpha">
+    <meta property="article:section" content="Cryptocurrency">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Airdrop Details - Complete Guide",
-      "description": "Detailed information about cryptocurrency airdrops including rewards and participation steps",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://airdropalpha.vercel.app/airdrop-details.html"
+      },
+      "headline": "Cryptocurrency Airdrop Details",
+      "description": "Complete guide to participating in cryptocurrency airdrops",
+      "image": "https://airdropalpha.vercel.app/og-image.png",
       "author": {
         "@type": "Organization",
-        "name": "AirdropAlpha"
+        "name": "AirdropAlpha",
+        "url": "https://airdropalpha.vercel.app/"
       },
       "publisher": {
         "@type": "Organization",
         "name": "AirdropAlpha",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://airdropalpha.vercel.app/logo.png"
+          "url": "https://airdropalpha.vercel.app/icon-512.png"
         }
       },
-      "datePublished": "2025-12-21",
-      "dateModified": "2025-12-21",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://airdropalpha.vercel.app/airdrop-details.html"
-      }
+      "datePublished": "2024-12-21",
+      "dateModified": "2024-12-21"
     }
     </script>
     
@@ -76,12 +79,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" as="script">
+    
+    <!-- DNS prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
@@ -149,6 +159,22 @@
             .container {
                 padding: 2rem;
             }
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            margin-bottom: 1.5rem;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary);
         }
         
         /* Back button */
@@ -294,6 +320,18 @@
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.25));
             color: var(--success);
             border-color: rgba(16, 185, 129, 0.4);
+        }
+        
+        .hot-badge-detail {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.25));
+            color: var(--danger);
+            border-color: rgba(239, 68, 68, 0.4);
+        }
+        
+        .new-badge-detail {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.25));
+            color: var(--warning);
+            border-color: rgba(245, 158, 11, 0.4);
         }
         
         /* Reward Badge */
@@ -534,6 +572,35 @@
             font-size: 0.95rem;
         }
         
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            background: var(--surface);
+            padding: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            padding: 1rem;
+            background: var(--background);
+            border-top: 1px solid var(--border);
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -656,6 +723,25 @@
             overflow: hidden;
             clip: rect(1px, 1px, 1px, 1px);
         }
+        
+        /* SEO Content */
+        .seo-content {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+        }
+        
+        .seo-content h2, .seo-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .seo-content ul, .seo-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
     </style>
     
     <script>
@@ -669,21 +755,21 @@
         });
     </script>
 </head>
-<body>
+<body itemscope itemtype="https://schema.org/WebPage">
     <main class="container py-4">
         <!-- Breadcrumb Navigation -->
-        <nav aria-label="Breadcrumb">
-            <ol style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <nav aria-label="Breadcrumb" class="breadcrumb" itemprop="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+            <ol style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
                 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="display: inline;">
+                    <meta itemprop="position" content="1" />
                     <a href="index.html" itemprop="item" style="color: var(--text-secondary); text-decoration: none;">
                         <span itemprop="name">Airdrops</span>
                     </a>
-                    <meta itemprop="position" content="1" />
                 </li>
                 <li style="display: inline; color: var(--text-muted); margin: 0 0.5rem;">›</li>
                 <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" style="display: inline;">
-                    <span itemprop="name" style="color: var(--primary); font-weight: 500;">Airdrop Details</span>
                     <meta itemprop="position" content="2" />
+                    <span itemprop="name" style="color: var(--primary); font-weight: 500;">Airdrop Details</span>
                 </li>
             </ol>
         </nav>
@@ -757,6 +843,16 @@
                             <!-- Le guide de participation sera inséré ici -->
                         </div>
                     </section>
+                    
+                    <!-- FAQ Section -->
+                    <section class="info-card" id="faqSection" style="display: none;" aria-label="Frequently Asked Questions">
+                        <h2 class="h4 mb-4 d-flex align-items-center">
+                            <i class="fas fa-question-circle me-3 text-primary"></i>Frequently Asked Questions
+                        </h2>
+                        <div id="faqContent" class="faq-container">
+                            <!-- FAQ sera généré ici -->
+                        </div>
+                    </section>
                 </div>
                 
                 <!-- Right Column: Quick Info -->
@@ -767,7 +863,7 @@
                             <i class="fas fa-external-link-alt me-3 text-primary"></i>Official Website
                         </h2>
                         <div class="d-grid">
-                            <a id="officialLink" href="#" target="_blank" rel="noopener noreferrer" class="official-website-btn">
+                            <a id="officialLink" href="#" target="_blank" rel="noopener noreferrer" class="official-website-btn" itemprop="url">
                                 <i class="fas fa-external-link-alt"></i> Visit Official Website
                             </a>
                         </div>
@@ -792,6 +888,16 @@
                         <div class="info-item">
                             <div class="info-label">Community Score</div>
                             <div class="info-value" id="airdropScore"></div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Estimated Value</div>
+                            <div class="info-value" id="airdropValue"></div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">Expiration Date</div>
+                            <div class="info-value" id="airdropExpiration"></div>
                         </div>
                     </section>
                     
@@ -825,8 +931,31 @@
                             </div>
                         </div>
                     </section>
+                    
+                    <!-- Share Card -->
+                    <section class="info-card" aria-label="Share this airdrop">
+                        <h2 class="h4 mb-4 d-flex align-items-center">
+                            <i class="fas fa-share-alt me-3 text-primary"></i>Share
+                        </h2>
+                        <div class="d-flex justify-content-center gap-3">
+                            <button class="btn btn-outline-secondary" onclick="shareOnTwitter()">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="shareOnTelegram()">
+                                <i class="fab fa-telegram"></i>
+                            </button>
+                            <button class="btn btn-outline-secondary" onclick="copyLink()">
+                                <i class="fas fa-link"></i>
+                            </button>
+                        </div>
+                    </section>
                 </div>
             </div>
+            
+            <!-- SEO Content Section -->
+            <section class="seo-content" id="seoContent" style="display: none;">
+                <div id="seoContentInner"></div>
+            </section>
         </div>
         
         <!-- Error Message -->
@@ -835,12 +964,89 @@
                 <i class="fas fa-exclamation-triangle me-3 mt-1"></i>
                 <div>
                     <span id="errorText">Failed to load airdrop details. Please go back and try again.</span>
+                    <div class="mt-3">
+                        <button class="btn btn-primary me-2" onclick="window.location.href='index.html'">
+                            <i class="fas fa-home me-2"></i>Go to Airdrops List
+                        </button>
+                        <button class="btn btn-outline-secondary" onclick="location.reload()">
+                            <i class="fas fa-redo me-2"></i>Retry
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <script>
+        // Fonction pour obtenir des données de fallback si localStorage est vide
+        function getFallbackAirdropData() {
+            // Récupérer l'ID depuis l'URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const airdropId = urlParams.get('id') || 'layerzero';
+            
+            // Données de fallback
+            const fallbackAirdrops = {
+                'layerzero': {
+                    Name: "LayerZero",
+                    Logo: "https://www.google.com/s2/favicons?domain=layerzero.network&sz=128",
+                    Type: "Hot,Free,Verified",
+                    Category: "Infrastructure,Interoperability,Layer 2",
+                    Reward: "$500-$5000+",
+                    Effort: "Medium",
+                    Score: "95",
+                    Commission: "$5M",
+                    URL: "https://layerzero.network",
+                    Notes: "Omnichain interoperability protocol connecting 50+ blockchains.",
+                    Backers: "Binance Labs, Coinbase Ventures",
+                    LongDescription: "LayerZero is an omnichain interoperability protocol that enables seamless communication between different blockchains. The protocol uses a unique ultra-light node design that provides secure message passing without trusted intermediaries.\n\n## Key Features\n- **Cross-chain Communication**: Enables dApps to communicate across 50+ blockchains\n- **Security**: Uses decentralized oracle networks and relayers for message verification\n- **Gas Efficiency**: Ultra-light node design minimizes gas costs\n- **Developer Friendly**: Simple SDK for easy integration\n\n## Technology\nLayerZero's architecture consists of three main components: Oracle, Relayer, and Endpoint. This design ensures messages are delivered securely and efficiently across chains.",
+                    HowToParticipate: "1. **Visit Official Website**: Go to layerzero.network\n2. **Connect Wallet**: Use a compatible wallet like MetaMask\n3. **Bridge Assets**: Use the bridge to transfer assets between chains\n4. **Use dApps**: Interact with LayerZero-powered applications\n5. **Stay Active**: Regular activity increases airdrop eligibility",
+                    Expiration: "2024-06-30",
+                    FAQ: [
+                        {
+                            question: "What is LayerZero?",
+                            answer: "LayerZero is an omnichain interoperability protocol that enables communication between different blockchains."
+                        },
+                        {
+                            question: "How do I qualify for the airdrop?",
+                            answer: "Qualify by using LayerZero bridges, interacting with supported dApps, and being an early user."
+                        },
+                        {
+                            question: "When will the airdrop happen?",
+                            answer: "Exact date not announced. Follow official channels for updates."
+                        }
+                    ]
+                },
+                'starknet': {
+                    Name: "StarkNet",
+                    Logo: "https://www.google.com/s2/favicons?domain=starknet.io&sz=128",
+                    Type: "Hot,New,Verified",
+                    Category: "Layer 2,Scaling,ZK-Rollup",
+                    Reward: "$100-$2000+",
+                    Effort: "High",
+                    Score: "90",
+                    Commission: "$3M",
+                    URL: "https://starknet.io",
+                    Notes: "ZK-Rollup scaling solution for Ethereum.",
+                    Backers: "Paradigm, Sequoia Capital",
+                    LongDescription: "StarkNet is a validity rollup (ZK-Rollup) that runs on Ethereum. It enables any dApp to achieve unlimited scale for its computation without compromising Ethereum's security.\n\n## Key Features\n- **ZK-Rollup Technology**: Uses zero-knowledge proofs for scalability\n- **Ethereum Security**: Inherits security from Ethereum mainnet\n- **Cairo Language**: Uses Cairo programming language for smart contracts\n- **High Throughput**: Can process thousands of transactions per second",
+                    HowToParticipate: "1. **Set Up Wallet**: Install Argent X or Braavos wallet\n2. **Bridge Funds**: Bridge ETH to StarkNet\n3. **Use dApps**: Interact with StarkNet ecosystem applications\n4. **Mint NFTs**: Participate in NFT mints on StarkNet\n5. **Trade on DEXs**: Use Jediswap or other StarkNet DEXs",
+                    Expiration: "2024-05-31",
+                    FAQ: [
+                        {
+                            question: "What is StarkNet?",
+                            answer: "StarkNet is a ZK-Rollup scaling solution for Ethereum that uses STARK proofs."
+                        },
+                        {
+                            question: "Which wallets support StarkNet?",
+                            answer: "Argent X and Braavos are the main wallets for StarkNet."
+                        }
+                    ]
+                }
+            };
+            
+            return fallbackAirdrops[airdropId] || fallbackAirdrops['layerzero'];
+        }
+        
         // Load airdrop details
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Page de détails initialisée');
@@ -864,22 +1070,55 @@
         function loadAirdropDetails() {
             try {
                 // Récupérer les données depuis localStorage
-                const airdropData = JSON.parse(localStorage.getItem('currentAirdrop'));
+                let airdropData = null;
+                const storedData = localStorage.getItem('currentAirdrop');
+                const storedTime = localStorage.getItem('currentAirdropTime');
+                
+                // Vérifier si les données existent et sont récentes (moins de 5 minutes)
+                if (storedData && storedTime) {
+                    const timeDiff = new Date().getTime() - parseInt(storedTime);
+                    if (timeDiff < 5 * 60 * 1000) { // 5 minutes
+                        airdropData = JSON.parse(storedData);
+                        console.log('✅ Données chargées depuis localStorage (récentes)');
+                    } else {
+                        console.log('⚠️ Données localStorage trop anciennes');
+                    }
+                }
                 
                 if (!airdropData) {
-                    throw new Error('No airdrop data found. Please select an airdrop from the main page.');
+                    // Si pas de données dans localStorage, utiliser l'ID de l'URL
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const airdropId = urlParams.get('id');
+                    
+                    if (airdropId) {
+                        console.log(`🔍 Tentative de chargement depuis API avec ID: ${airdropId}`);
+                        // Pour l'instant, on utilise le fallback
+                        airdropData = getFallbackAirdropData();
+                    } else {
+                        // Si pas d'ID dans l'URL, utiliser le fallback
+                        console.log('⚠️ Pas de données dans localStorage, utilisation du fallback');
+                        airdropData = getFallbackAirdropData();
+                    }
                 }
                 
                 // DEBUG: Afficher ce qui est reçu
-                console.log('🔍 Données reçues depuis localStorage:', airdropData);
-                console.log('🔍 Clés disponibles:', Object.keys(airdropData));
+                console.log('🔍 Données airdrop:', airdropData);
                 
                 // Afficher les données
                 displayAirdropDetails(airdropData);
                 
             } catch (error) {
                 console.error('Error loading airdrop details:', error);
-                showError(error.message);
+                
+                // En dernier recours, utiliser le fallback
+                try {
+                    const fallbackData = getFallbackAirdropData();
+                    displayAirdropDetails(fallbackData);
+                    console.log('✅ Affichage avec données de fallback');
+                } catch (fallbackError) {
+                    console.error('Even fallback failed:', fallbackError);
+                    showError('Unable to load airdrop details. Please go back to the main page and select an airdrop.');
+                }
             }
         }
         
@@ -898,25 +1137,8 @@
             // Nom
             document.getElementById('airdropName').textContent = airdrop.Name;
             
-            // Mettre à jour le titre de la page
-            document.title = `${airdrop.Name} - Airdrop Details | AirdropAlpha`;
-            
-            // Mettre à jour la meta description
-            const metaDescription = document.querySelector('meta[name="description"]');
-            if (metaDescription) {
-                metaDescription.content = `Complete guide to ${airdrop.Name} airdrop. ${airdrop.Notes || 'Detailed information and participation instructions.'}`;
-            }
-            
-            // Mettre à jour Open Graph
-            const ogTitle = document.querySelector('meta[property="og:title"]');
-            if (ogTitle) {
-                ogTitle.content = `${airdrop.Name} - Complete Airdrop Guide | AirdropAlpha`;
-            }
-            
-            const ogDescription = document.querySelector('meta[property="og:description"]');
-            if (ogDescription) {
-                ogDescription.content = airdrop.Notes || `Complete guide to ${airdrop.Name} cryptocurrency airdrop.`;
-            }
+            // Mettre à jour le titre et meta tags
+            updatePageMetaTags(airdrop);
             
             // Description courte
             document.getElementById('airdropDescription').textContent = airdrop.Notes || 'No description available';
@@ -930,11 +1152,16 @@
                     let icon = 'fa-tag';
                     let badgeClass = 'type-badge-detail';
                     
-                    if (typeLower.includes('hot')) icon = 'fa-fire';
-                    else if (typeLower.includes('new')) icon = 'fa-star';
-                    else if (typeLower.includes('free')) icon = 'fa-coins';
+                    if (typeLower.includes('hot')) {
+                        icon = 'fa-fire';
+                        badgeClass = 'hot-badge-detail';
+                    } else if (typeLower.includes('new')) {
+                        icon = 'fa-star';
+                        badgeClass = 'new-badge-detail';
+                    } else if (typeLower.includes('free')) icon = 'fa-coins';
                     else if (typeLower.includes('verified')) icon = 'fa-check-circle';
                     else if (typeLower.includes('exclusive')) icon = 'fa-crown';
+                    else if (typeLower.includes('upcoming')) icon = 'fa-calendar-alt';
                     
                     return `<span class="badge-detail ${badgeClass}">
                         <i class="fas ${icon} me-2"></i>${type}
@@ -985,7 +1212,6 @@
             if (rewardMatch) {
                 const price = parseInt(rewardMatch[1].replace(/,/g, ''));
                 if (!isNaN(price)) {
-                    rewardElement.setAttribute('itemprop', 'offers');
                     rewardElement.innerHTML = `
                         ${airdrop.Reward}
                         <meta itemprop="price" content="${price}">
@@ -1009,6 +1235,8 @@
                     else if (categoryLower.includes('gaming')) icon = 'fa-gamepad';
                     else if (categoryLower.includes('infra')) icon = 'fa-server';
                     else if (categoryLower.includes('social')) icon = 'fa-users';
+                    else if (categoryLower.includes('scaling')) icon = 'fa-expand-alt';
+                    else if (categoryLower.includes('interoperability')) icon = 'fa-link';
                     
                     return `<span class="badge-detail category-badge-detail">
                         <i class="fas ${icon} me-2"></i>${category}
@@ -1020,6 +1248,10 @@
             const detailedDescription = document.getElementById('detailedDescription');
             const howToParticipateSection = document.getElementById('howToParticipateSection');
             const howToParticipateContent = document.getElementById('howToParticipateContent');
+            const faqSection = document.getElementById('faqSection');
+            const faqContent = document.getElementById('faqContent');
+            const seoContent = document.getElementById('seoContent');
+            const seoContentInner = document.getElementById('seoContentInner');
             
             // Afficher la description longue
             if (airdrop.LongDescription && airdrop.LongDescription.trim() !== '') {
@@ -1028,11 +1260,12 @@
                 detailedDescription.innerHTML = `
                     <p>${airdrop.Notes || `Participate in the ${airdrop.Name} airdrop to receive free tokens.`}</p>
                     <div class="mt-4">
-                        <h5>Project Details</h5>
+                        <h4>Project Details</h4>
                         <ul>
                             <li><strong>Project Categories:</strong> ${airdrop.Category || 'Not specified'}</li>
                             <li><strong>Estimated Reward:</strong> ${airdrop.Reward}</li>
                             <li><strong>Required Effort:</strong> ${airdrop.Effort || 'Medium'}</li>
+                            <li><strong>Backed by:</strong> ${airdrop.Backers || 'Not specified'}</li>
                         </ul>
                     </div>
                 `;
@@ -1046,9 +1279,19 @@
                 howToParticipateSection.style.display = 'none';
             }
             
+            // Afficher FAQ
+            if (airdrop.FAQ && Array.isArray(airdrop.FAQ) && airdrop.FAQ.length > 0) {
+                faqSection.style.display = 'block';
+                faqContent.innerHTML = generateFAQ(airdrop.FAQ);
+            } else {
+                faqSection.style.display = 'none';
+            }
+            
             // Quick Info
             document.getElementById('airdropStatus').innerHTML = getStatusBadge(airdrop.Type);
             document.getElementById('airdropEffort').innerHTML = getEffortBadge(airdrop.Effort);
+            document.getElementById('airdropValue').innerHTML = airdrop.Reward;
+            document.getElementById('airdropExpiration').innerHTML = airdrop.Expiration || 'Not specified';
             
             // Score
             const score = parseInt(airdrop.Score) || 0;
@@ -1076,6 +1319,9 @@
                 officialLink.style.display = 'none';
             }
             
+            // Générer le contenu SEO
+            generateSEOContent(airdrop);
+            
             // Analytics
             if (typeof gtag === 'function') {
                 gtag('event', 'view_airdrop_details', {
@@ -1084,6 +1330,82 @@
                     'value': score
                 });
             }
+            
+            // Mettre à jour les données structurées
+            updateStructuredData(airdrop);
+        }
+        
+        function updatePageMetaTags(airdrop) {
+            const pageTitle = `${airdrop.Name} Airdrop - Complete Guide & Participation Steps | AirdropAlpha`;
+            document.title = pageTitle;
+            
+            // Meta description
+            const description = `Complete guide to ${airdrop.Name} cryptocurrency airdrop. Estimated reward: ${airdrop.Reward}. ${airdrop.Notes || 'Learn how to participate and maximize your rewards.'}`;
+            
+            // Mettre à jour les meta tags
+            updateMetaTag('name', 'description', description);
+            updateMetaTag('property', 'og:title', pageTitle);
+            updateMetaTag('property', 'og:description', description);
+            updateMetaTag('property', 'twitter:title', pageTitle);
+            updateMetaTag('property', 'twitter:description', description);
+            updateMetaTag('property', 'og:url', window.location.href);
+            updateMetaTag('property', 'og:image:alt', `${airdrop.Name} Airdrop - AirdropAlpha`);
+            
+            // Mettre à jour le canonical
+            const canonicalLink = document.querySelector('link[rel="canonical"]');
+            if (canonicalLink) {
+                canonicalLink.href = window.location.href;
+            }
+        }
+        
+        function updateMetaTag(attr, name, content) {
+            let meta = document.querySelector(`meta[${attr}="${name}"]`);
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.setAttribute(attr, name);
+                document.head.appendChild(meta);
+            }
+            meta.content = content;
+        }
+        
+        function updateStructuredData(airdrop) {
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "Article",
+                "headline": `${airdrop.Name} Airdrop - Complete Guide`,
+                "description": `Complete guide to ${airdrop.Name} cryptocurrency airdrop. ${airdrop.Notes || ''}`,
+                "image": airdrop.Logo || "https://airdropalpha.vercel.app/og-image.png",
+                "author": {
+                    "@type": "Organization",
+                    "name": "AirdropAlpha",
+                    "url": "https://airdropalpha.vercel.app/"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "AirdropAlpha",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://airdropalpha.vercel.app/icon-512.png"
+                    }
+                },
+                "datePublished": "2024-12-21",
+                "dateModified": "2024-12-21",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": window.location.href
+                },
+                "keywords": airdrop.Category ? airdrop.Category.split(',').map(c => c.trim()) : ["cryptocurrency", "airdrop"],
+                "articleSection": "Cryptocurrency Airdrops"
+            };
+            
+            // Mettre à jour le script JSON-LD existant
+            let script = document.querySelector('script[type="application/ld+json"]');
+            if (!script) {
+                script = document.createElement('script');
+                script.type = 'application/ld+json';
+                document.head.appendChild(script);
+            }
+            script.textContent = JSON.stringify(structuredData);
         }
         
         // Fonction pour formater la description longue
@@ -1180,6 +1502,99 @@
             return formatLongDescription(content);
         }
         
+        function generateFAQ(faqItems) {
+            if (!faqItems || !Array.isArray(faqItems) || faqItems.length === 0) {
+                return '<p>No FAQs available for this airdrop.</p>';
+            }
+            
+            let faqHTML = '';
+            
+            faqItems.forEach((item, index) => {
+                faqHTML += `
+                    <div class="faq-item" id="faq-${index}">
+                        <div class="faq-question" onclick="toggleFAQ(${index})">
+                            ${item.question}
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            ${item.answer}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            return faqHTML;
+        }
+        
+        function toggleFAQ(index) {
+            const faqItem = document.getElementById(`faq-${index}`);
+            const isActive = faqItem.classList.contains('active');
+            
+            // Fermer tous les autres FAQ
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Ouvrir/fermer celui-ci
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+        
+        function generateSEOContent(airdrop) {
+            const seoContentInner = document.getElementById('seoContentInner');
+            const seoContent = document.getElementById('seoContent');
+            
+            let seoHTML = `
+                <h2>Complete Guide to ${airdrop.Name} Airdrop</h2>
+                <p>The ${airdrop.Name} airdrop represents one of the most anticipated token distributions in the cryptocurrency space. This comprehensive guide covers everything you need to know about participating and maximizing your rewards.</p>
+                
+                <h3>What is ${airdrop.Name}?</h3>
+                <p>${airdrop.Name} is ${airdrop.Notes || 'a leading blockchain project offering innovative solutions.'} The project has gained significant attention in the crypto community and is backed by ${airdrop.Backers || 'prominent investors'}.</p>
+                
+                <h3>Why Participate in the ${airdrop.Name} Airdrop?</h3>
+                <ul>
+                    <li><strong>Early Access:</strong> Get tokens before they're listed on major exchanges</li>
+                    <li><strong>Potential Value:</strong> Estimated rewards of ${airdrop.Reward}</li>
+                    <li><strong>Community Building:</strong> Join one of the fastest growing crypto communities</li>
+                    <li><strong>Network Participation:</strong> Become an early user of innovative blockchain technology</li>
+                </ul>
+                
+                <h3>Step-by-Step Participation Guide</h3>
+                <p>Follow these steps to maximize your chances of receiving the ${airdrop.Name} airdrop:</p>
+                <ol>
+                    <li><strong>Set Up a Compatible Wallet:</strong> Use MetaMask, Trust Wallet, or another supported wallet</li>
+                    <li><strong>Connect to the Network:</strong> Ensure your wallet is connected to the correct blockchain network</li>
+                    <li><strong>Complete Required Tasks:</strong> Follow the project's specific participation requirements</li>
+                    <li><strong>Stay Active:</strong> Regular interaction increases your eligibility</li>
+                    <li><strong>Monitor Announcements:</strong> Follow official channels for distribution updates</li>
+                </ol>
+                
+                <h3>Security Considerations</h3>
+                <p>When participating in any cryptocurrency airdrop, always prioritize security:</p>
+                <ul>
+                    <li>Never share your private keys or seed phrases</li>
+                    <li>Use a dedicated wallet for airdrop participation</li>
+                    <li>Verify all links through official channels</li>
+                    <li>Be cautious of phishing attempts and scams</li>
+                    <li>Remember: Legitimate airdrops never require payment</li>
+                </ul>
+                
+                <h3>Expected Timeline</h3>
+                <p>The ${airdrop.Name} airdrop is expected to occur ${airdrop.Expiration ? 'before ' + airdrop.Expiration : 'in the coming months'}. The exact distribution date will be announced through official project channels.</p>
+                
+                <h3>Tax Implications</h3>
+                <p>Note that cryptocurrency airdrops may have tax implications in your jurisdiction. Consult with a tax professional to understand your reporting requirements.</p>
+                
+                <div class="alert alert-info mt-4">
+                    <p><strong>Disclaimer:</strong> This information is for educational purposes only and does not constitute financial advice. Cryptocurrency investments carry risks, and you should conduct your own research before participating.</p>
+                </div>
+            `;
+            
+            seoContentInner.innerHTML = seoHTML;
+            seoContent.style.display = 'block';
+        }
+        
         function getStatusBadge(type) {
             if (!type) return '<span class="status-badge status-upcoming">Unknown</span>';
             
@@ -1221,7 +1636,34 @@
                 });
             }
             
-            window.location.href = 'index.html';
+            // Vérifier si l'utilisateur vient de index.html
+            if (document.referrer && document.referrer.includes('index.html')) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Fonctions de partage
+        function shareOnTwitter() {
+            const text = `Check out this cryptocurrency airdrop opportunity on AirdropAlpha!`;
+            const url = window.location.href;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        }
+        
+        function shareOnTelegram() {
+            const text = `Check out this cryptocurrency airdrop opportunity on AirdropAlpha! ${window.location.href}`;
+            window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(text)}`, '_blank');
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href)
+                .then(() => {
+                    alert('Link copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy link: ', err);
+                });
         }
     </script>
     
