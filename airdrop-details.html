@@ -820,8 +820,20 @@ const AIRDROP_CACHE_TTL_MS = 1000 * 60 * 5; // 5 minutes
 
 function getProjectFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return params.get('project');
+
+    // Support multiple parameter names (project / slug / name / id)
+    let v = params.get('project') || params.get('slug') || params.get('name') || params.get('id');
+
+    // Also support URLs like ...#project=optimai
+    if (!v && window.location.hash) {
+        const h = window.location.hash.replace(/^#/, '');
+        const hParams = new URLSearchParams(h);
+        v = hParams.get('project') || hParams.get('slug') || hParams.get('name') || hParams.get('id') || h;
+    }
+
+    return v;
 }
+
 
 function slugify(value) {
     return (value || '').toString().trim().toLowerCase()
@@ -926,7 +938,7 @@ async function loadAirdropDetails() {
         // 2) Fallback: original behavior (localStorage)
         const airdropData = JSON.parse(localStorage.getItem('currentAirdrop'));
         if (!airdropData) {
-            throw new Error('No airdrop data found. Please select an airdrop from the main page.');
+            throw new Error('No airdrop data found. Please select an airdrop from the main page. (Tip: open airdrop-details.html?project=your-slug)');
         }
         displayAirdropDetails(airdropData);
 
