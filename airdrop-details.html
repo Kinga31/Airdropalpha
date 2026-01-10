@@ -877,8 +877,25 @@ function findAirdropBySlug(list, targetSlug) {
     let match = list.find(a => slugify(a?.slug) === t || slugify(a?.Slug) === t);
     if (match) return match;
 
-    // Fallback: slugify name
+    // Match by exact name slug
     match = list.find(a => slugify(a?.Name || a?.name) === t);
+    if (match) return match;
+
+    // Match by common identifiers (symbol / ticker / handle)
+    match = list.find(a => (
+        slugify(a?.Symbol) === t ||
+        slugify(a?.Ticker) === t ||
+        slugify(a?.Handle) === t ||
+        slugify(a?.Twitter) === t
+    ));
+    if (match) return match;
+
+    // Friendly fallback: allow partial match (e.g., ?project=optimai matches "OptimAI Network")
+    match = list.find(a => {
+        const n = slugify(a?.Name || a?.name);
+        return n && (n.startsWith(t) || n.includes(t));
+    });
+
     return match || null;
 }
 
@@ -1257,7 +1274,7 @@ async function loadAirdropDetails() {
                 });
             }
             
-            window.location.href = 'index.html';
+            window.location.href = '/';
         }
     </script>
 <!-- Bootstrap JS -->
