@@ -831,17 +831,22 @@ function getProjectFromUrl() {
         v = hParams.get('project') || hParams.get('slug') || hParams.get('name') || hParams.get('id') || h;
     }
 
-    return v;
+    try { return v ? decodeURIComponent(v) : v; } catch(e) { return v; }
 }
 
 
-function slugify(value) {
-    return (value || '').toString().trim().toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-}
-
-function getCachedAirdrops() {
+function slugify(text) {
+            return (text ?? '')
+                .toString()
+                .normalize('NFD')                 // split accents
+                .replace(/[\u0300-\u036f]/g, '')  // remove accents
+                .toLowerCase()
+                .trim()
+                .replace(/&/g, 'and')
+                .replace(/[^a-z0-9]+/g, '-')      // non-alphanum -> -
+                .replace(/-+/g, '-')              // collapse -
+                .replace(/^-|-$/g, '');           // trim -
+        }function getCachedAirdrops() {
     try {
         const raw = localStorage.getItem(AIRDROP_CACHE_KEY);
         const time = Number(localStorage.getItem(AIRDROP_CACHE_KEY + '_time') || 0);

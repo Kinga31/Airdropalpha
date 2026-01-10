@@ -1018,7 +1018,8 @@
                 });
 
                 if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-                return await response.json();
+                const data = await response.json();
+                return Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
             } finally {
                 clearTimeout(timeout);
             }
@@ -1901,7 +1902,21 @@ let allAirdrops = [];
         setInterval(() => {
             if (document.visibilityState === 'visible') {
                 console.log('🔄 Auto-refreshing airdrops');
-                loadAirdrops();
+                
+
+        // Fix: when returning from the details page, some browsers restore the page from BFCache
+        // without re-running DOMContentLoaded. Ensure data is present.
+        window.addEventListener('pageshow', function (e) {
+            const cameFromBFCache = e.persisted === true;
+            const container = document.getElementById('airdropsContainer');
+            const hasCards = container && container.children && container.children.length > 0;
+
+            // If we have no cards or the page was restored from cache, refresh from cache/API.
+            if (cameFromBFCache || !hasCards) {
+                loadAirdrops(false);
+            }
+        });
+loadAirdrops();
             }
         }, 10 * 60 * 1000);
     </script>
