@@ -670,12 +670,6 @@
 <i class="fas fa-gem me-2"></i>AirdropAlpha
             </a>
 <div class="d-flex gap-2">
-<a aria-label="X (Twitter)" class="btn btn-sm btn-outline-secondary" href="https://x.com/CryptoGoblin510" rel="noopener noreferrer" target="_blank" title="Follow us on X">
-<i class="fab fa-twitter"></i>
-</a>
-<a aria-label="Telegram" class="btn btn-sm btn-outline-secondary" href="https://t.me/AirdropAlpha47" rel="noopener noreferrer" target="_blank" title="Join Telegram">
-<i class="fab fa-telegram"></i>
-</a>
 <button class="btn btn-primary" id="refreshBtn" onclick="loadAirdrops(true)">
 <i class="fas fa-sync-alt"></i> <span class="d-none d-md-inline">Refresh</span>
 </button>
@@ -950,12 +944,6 @@
 <h4 class="fw-bold mb-3">Stay Updated</h4>
 <p class="mb-3">Follow us for the latest airdrop opportunities and updates:</p>
 <div class="d-flex justify-content-md-end gap-3 mb-4">
-<a aria-label="X (Twitter)" class="text-decoration-none fs-4" href="https://x.com/CryptoGoblin510" rel="noopener noreferrer" target="_blank">
-<i class="fab fa-twitter"></i>
-</a>
-<a aria-label="Telegram" class="text-decoration-none fs-4" href="https://t.me/AirdropAlpha47" rel="noopener noreferrer" target="_blank">
-<i class="fab fa-telegram"></i>
-</a>
 <a aria-label="Discord" class="text-decoration-none fs-4" href="#">
 <i class="fab fa-discord"></i>
 </a>
@@ -1610,7 +1598,17 @@ let allAirdrops = [];
                 localStorage.setItem('currentAirdropTime', new Date().getTime());
                 
                 // REDIRECTION VERS LA PAGE DE DÉTAILS DANS LA MÊME FENÊTRE
-                window.location.href = 'airdrop-details.html';
+                                // Build a stable slug for shareable URLs
+                const rawSlug = (airdrop.slug || airdrop.Slug || airdrop.Name || airdrop.name || '').toString();
+                const slug = rawSlug.trim().toLowerCase()
+                    .replace(/[^a-z0-9]+/g, '-')
+                    .replace(/(^-|-$)/g, '') || 'airdrop';
+
+                // Store slug (optional) + keep currentAirdrop for instant details load
+                localStorage.setItem('currentAirdropSlug', slug);
+
+                // REDIRECTION VERS LA PAGE DE DÉTAILS (URL COPIABLE)
+                window.location.href = `airdrop-details.html?project=${encodeURIComponent(slug)}`;
                 
                 // Track analytics
                 if (typeof gtag === 'function') {

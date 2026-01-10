@@ -813,27 +813,111 @@
             }
         });
         
-        function loadAirdropDetails() {
-            try {
-                // Récupérer les données depuis localStorage
-                const airdropData = JSON.parse(localStorage.getItem('currentAirdrop'));
-                
-                if (!airdropData) {
-                    throw new Error('No airdrop data found. Please select an airdrop from the main page.');
-                }
-                
-                // DEBUG: Afficher ce qui est reçu
-                console.log('🔍 Données reçues depuis localStorage:', airdropData);
-                console.log('🔍 Clés disponibles:', Object.keys(airdropData));
-                
-                // Afficher les données
-                displayAirdropDetails(airdropData);
-                
-            } catch (error) {
-                console.error('Error loading airdrop details:', error);
-                showError(error.message);
+        // --- Shareable URL support (no UI changes) ---
+const API_URL = 'https://script.google.com/macros/s/AKfycbxsQ8n2SnTvsO7cvy5VQHyIybxAiukiLXuO_R2gTaQ58A3gUS4Pq1GK9gKYpLOqPc8W4Q/exec';
+const AIRDROP_CACHE_KEY = 'airdropalpha_cache_v2';
+const AIRDROP_CACHE_TTL_MS = 1000 * 60 * 5; // 5 minutes
+
+function getProjectFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('project');
+}
+
+function slugify(value) {
+    return (value || '').toString().trim().toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+}
+
+function getCachedAirdrops() {
+    try {
+        const raw = localStorage.getItem(AIRDROP_CACHE_KEY);
+        const time = Number(localStorage.getItem(AIRDROP_CACHE_KEY + '_time') || 0);
+        if (!raw || !time) return null;
+        if (Date.now() - time > AIRDROP_CACHE_TTL_MS) return null;
+        const parsed = JSON.parse(raw);
+        return Array.isArray(parsed) ? parsed : null;
+    } catch (e) {
+        return null;
+    }
+}
+
+function setCachedAirdrops(airdrops) {
+    try {
+        localStorage.setItem(AIRDROP_CACHE_KEY, JSON.stringify(airdrops));
+        localStorage.setItem(AIRDROP_CACHE_KEY + '_time', String(Date.now()));
+    } catch (e) { /* ignore */ }
+}
+
+async function fetchAirdropsFromApi() {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+
+    try {
+        const response = await fetch(`${API_URL}?t=${Date.now()}`, {
+            method: 'GET',
+            mode: 'cors',
+            headers: { 'Accept': 'application/json' },
+            signal: controller.signal
+        });
+        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+        const data = await response.json();
+        return Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+    } finally {
+        clearTimeout(timeout);
+    }
+}
+
+function findAirdropBySlug(list, targetSlug) {
+    if (!Array.isArray(list)) return null;
+    const t = slugify(targetSlug);
+    if (!t) return null;
+
+    // Prefer explicit slug fields if present
+    let match = list.find(a => slugify(a?.slug) === t || slugify(a?.Slug) === t);
+    if (match) return match;
+
+    // Fallback: slugify name
+    match = list.find(a => slugify(a?.Name || a?.name) === t);
+    return match || null;
+}
+
+async function loadAirdropDetails() {
+    try {
+        const projectSlug = getProjectFromUrl();
+
+        // 1) If URL contains ?project=..., resolve from cache/API so link is shareable
+        if (projectSlug) {
+            let allAirdrops = getCachedAirdrops();
+
+            if (!allAirdrops) {
+                allAirdrops = await fetchAirdropsFromApi();
+                if (allAirdrops && allAirdrops.length) setCachedAirdrops(allAirdrops);
+            }
+
+            const airdropDataFromUrl = findAirdropBySlug(allAirdrops, projectSlug);
+
+            if (airdropDataFromUrl) {
+                // Keep localStorage currentAirdrop for compatibility / faster reload
+                localStorage.setItem('currentAirdrop', JSON.stringify(airdropDataFromUrl));
+                localStorage.setItem('currentAirdropTime', new Date().getTime());
+                displayAirdropDetails(airdropDataFromUrl);
+                return;
             }
         }
+
+        // 2) Fallback: original behavior (localStorage)
+        const airdropData = JSON.parse(localStorage.getItem('currentAirdrop'));
+        if (!airdropData) {
+            throw new Error('No airdrop data found. Please select an airdrop from the main page.');
+        }
+        displayAirdropDetails(airdropData);
+
+    } catch (error) {
+        console.error('Error loading airdrop details:', error);
+        showError(error.message || 'Failed to load airdrop details.');
+    }
+}
         
         function displayAirdropDetails(airdrop) {
             // Cacher le loading spinner
