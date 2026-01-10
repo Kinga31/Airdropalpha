@@ -880,40 +880,84 @@ async function fetchAirdropsFromApi() {
     }
 }
 
+function normalizeSlug(s) {
+    return slugify(s).replace(/-/g, '');
+}
+
 function findAirdropBySlug(list, targetSlug) {
     if (!Array.isArray(list)) return null;
-    const t = slugify(targetSlug);
-    if (!t) return null;
 
-    const getCandidates = (a) => {
-        // Common name/title fields
-        const candidates = [
-            a?.slug, a?.Slug,
-            a?.Name, a?.name,
-            a?.Project, a?.project,
-            a?.Title, a?.title,
-            a?.Airdrop, a?.airdrop
-        ];
+    const target = slugify(targetSlug);
+    const targetN = normalizeSlug(targetSlug);
+    if (!target) return null;
 
-        // Common identifiers (optional)
-        candidates.push(a?.Symbol, a?.symbol, a?.Ticker, a?.ticker, a?.Handle, a?.handle, a?.Twitter, a?.twitter);
+    const fieldSlugs = (obj) => {
+        const out = [];
+        if (!obj || typeof obj !== 'object') return out;
 
-        return candidates
-            .filter(v => typeof v === 'string' || typeof v === 'number')
-            .map(v => slugify(String(v)))
-            .filter(Boolean);
+        for (const [k, v] of Object.entries(obj)) {
+            if (v == null) continue;
+
+            if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+                const sl = slugify(String(v));
+                if (sl) out.push(sl);
+            } else if (Array.isArray(v)) {
+                v.forEach(it => {
+                    if (typeof it === 'string' || typeof it === 'number') {
+                        const sl = slugify(String(it));
+                        if (sl) out.push(sl);
+                    }
+                });
+            }
+        }
+        return out;
     };
 
-    // 1) Exact match on any candidate
-    let match = list.find(a => getCandidates(a).includes(t));
+    // Exact match
+    let match = list.find(a => fieldSlugs(a).includes(target));
     if (match) return match;
 
-    // 2) Starts-with / contains (friendly direct links like ?project=optimai)
-    match = list.find(a => getCandidates(a).some(c => c.startsWith(t) || c.includes(t)));
+    // Hyphen-insensitive exact match: "selanetwork" vs "sela-network"
+    match = list.find(a => fieldSlugs(a).some(s => s.replace(/-/g, '') === targetN));
+    if (match) return match;
+
+    // Partial match (hyphen-insensitive)
+    match = list.find(a => fieldSlugs(a).some(s => {
+        const sn = s.replace(/-/g, '');
+        return sn.startsWith(targetN) || sn.includes(targetN);
+    }));
     if (match) return match;
 
     return null;
 }
+
+function suggestClosest(list, targetSlug, limit = 5) {
+    if (!Array.isArray(list)) return [];
+    const t = normalizeSlug(targetSlug);
+    const scored = [];
+
+    list.forEach(a => {
+        const candidates = Object.values(a || [])
+            .flatMap(v => (typeof v === 'string' || typeof v === 'number') ? [normalizeSlug(String(v))] : [])
+            .filter(Boolean);
+
+        let best = 0;
+        candidates.forEach(c => {
+            if (c === t) best = Math.max(best, 100);
+            else if (c.startsWith(t)) best = Math.max(best, 80);
+            else if (c.includes(t)) best = Math.max(best, 60);
+        });
+
+        if (best > 0) {
+            const name = a?.Name || a?.name || a?.Project || a?.project || a?.Title || a?.title || a?.Airdrop || a?.airdrop || 'Unknown';
+            scored.push({ score: best, name: String(name), slug: slugify(String(name)) });
+        }
+    });
+
+    scored.sort((x, y) => y.score - x.score);
+    return scored.slice(0, limit);
+}
+
 
 async function loadAirdropDetails() {
     try {
