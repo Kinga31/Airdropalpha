@@ -846,7 +846,115 @@ function slugify(text) {
                 .replace(/[^a-z0-9]+/g, '-')      // non-alphanum -> -
                 .replace(/-+/g, '-')              // collapse -
                 .replace(/^-|-$/g, '');           // trim -
-        }function getCachedAirdrops() {
+        }
+
+function normalizeKey(s) {
+    return slugify(s).replace(/-/g, '');
+}
+
+function buildLookupMap(list) {
+    const map = new Map();
+    if (!Array.isArray(list)) return map;
+
+    list.forEach(item => {
+        if (!item || typeof item !== 'object') return;
+
+        // Add slugs from all primitive fields
+        for (const v of Object.values(item)) {
+            if (v == null) continue;
+            if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+                const sl = slugify(String(v));
+                const nk = normalizeKey(String(v));
+                if (sl) map.set(sl, item);
+                if (nk) map.set(nk, item);
+            }
+        }
+
+        // Also add slug from preferred name-like fields (more stable)
+        const name = item.Name || item.name || item.Project || item.project || item.Title || item.title || item.Airdrop || item.airdrop;
+        if (name) {
+            const sl = slugify(String(name));
+            const nk = normalizeKey(String(name));
+            if (sl) map.set(sl, item);
+            if (nk) map.set(nk, item);
+        }
+    });
+
+    return map;
+}
+
+function renderFallbackPicker(list, query) {
+    const container = document.getElementById('airdropDetails') || document.body;
+
+    const q = (query || '').toString().trim();
+
+    const names = (Array.isArray(list) ? list : [])
+        .map(a => ({
+            name: String(a?.Name || a?.name || a?.Project || a?.project || a?.Title || a?.title || a?.Airdrop || a?.airdrop || 'Unknown'),
+            slug: slugify(String(a?.Name || a?.name || a?.Project || a?.project || a?.Title || a?.title || a?.Airdrop || a?.airdrop || 'Unknown'))
+        }))
+        .filter(x => x.slug);
+
+    // Simple scoring
+    const qn = normalizeKey(q);
+    names.forEach(x => {
+        const sn = normalizeKey(x.slug);
+        x.score = (sn === qn) ? 100 : (sn.startsWith(qn) ? 80 : (sn.includes(qn) ? 60 : 0));
+    });
+
+    names.sort((a, b) => b.score - a.score);
+
+    const top = names.slice(0, 12);
+
+    const html = `
+        <div style="max-width:880px;margin:24px auto;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35)">
+            <h2 style="margin:0 0 8px 0;">Airdrop not found</h2>
+            <p style="margin:0 0 14px 0;opacity:.85;">
+                I can't find <b>${q || '(empty)'}</b> in the database. This usually means the name in the Google Sheet is different.
+            </p>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+                <input id="airdropSearchInput" type="text" value="${q.replace(/"/g,'&quot;')}" placeholder="Search airdrop name..."
+                    style="flex:1;min-width:220px;padding:10px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.35);color:inherit;">
+                <button id="airdropSearchBtn"
+                    style="padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:inherit;cursor:pointer;">
+                    Search
+                </button>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+                ${top.map(x => `
+                    <a href="airdrop-details.html?project=${encodeURIComponent(x.slug)}"
+                       style="text-decoration:none;color:inherit;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);display:block;">
+                        <div style="font-weight:700;">${x.name}</div>
+                        <div style="opacity:.75;font-size:12px;margin-top:4px;">?project=${x.slug}</div>
+                    </a>
+                `).join('')}
+            </div>
+
+            <p style="margin:14px 0 0 0;opacity:.7;font-size:12px;">
+                Tip: open an airdrop from the main page once, then deep links will work even if the sheet name is different.
+            </p>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    const btn = document.getElementById('airdropSearchBtn');
+    const input = document.getElementById('airdropSearchInput');
+
+    const doSearch = () => {
+        const v = input.value.trim();
+        const url = new URL(window.location.href);
+        url.searchParams.set('project', v);
+        window.location.href = url.toString();
+    };
+
+    btn?.addEventListener('click', doSearch);
+    input?.addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+}
+
+function getCachedAirdrops() {
     try {
         const raw = localStorage.getItem(AIRDROP_CACHE_KEY);
         const time = Number(localStorage.getItem(AIRDROP_CACHE_KEY + '_time') || 0);
@@ -977,7 +1085,8 @@ async function loadAirdropDetails() {
                 if (allAirdrops && allAirdrops.length) setCachedAirdrops(allAirdrops);
             }
 
-            const airdropDataFromUrl = findAirdropBySlug(allAirdrops, projectSlug);
+            const lookupMap = buildLookupMap(allAirdrops);
+            const airdropDataFromUrl = lookupMap.get(slugify(projectSlug)) || lookupMap.get(normalizeKey(projectSlug)) || findAirdropBySlug(allAirdrops, projectSlug);
 
             if (!airdropDataFromUrl) {
                 const count = Array.isArray(allAirdrops) ? allAirdrops.length : 0;
