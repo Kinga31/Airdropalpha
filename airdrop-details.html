@@ -885,30 +885,34 @@ function findAirdropBySlug(list, targetSlug) {
     const t = slugify(targetSlug);
     if (!t) return null;
 
-    // Prefer explicit slug fields if present
-    let match = list.find(a => slugify(a?.slug) === t || slugify(a?.Slug) === t);
+    const getCandidates = (a) => {
+        // Common name/title fields
+        const candidates = [
+            a?.slug, a?.Slug,
+            a?.Name, a?.name,
+            a?.Project, a?.project,
+            a?.Title, a?.title,
+            a?.Airdrop, a?.airdrop
+        ];
+
+        // Common identifiers (optional)
+        candidates.push(a?.Symbol, a?.symbol, a?.Ticker, a?.ticker, a?.Handle, a?.handle, a?.Twitter, a?.twitter);
+
+        return candidates
+            .filter(v => typeof v === 'string' || typeof v === 'number')
+            .map(v => slugify(String(v)))
+            .filter(Boolean);
+    };
+
+    // 1) Exact match on any candidate
+    let match = list.find(a => getCandidates(a).includes(t));
     if (match) return match;
 
-    // Match by exact name slug
-    match = list.find(a => slugify(a?.Name || a?.name) === t);
+    // 2) Starts-with / contains (friendly direct links like ?project=optimai)
+    match = list.find(a => getCandidates(a).some(c => c.startsWith(t) || c.includes(t)));
     if (match) return match;
 
-    // Match by common identifiers (symbol / ticker / handle)
-    match = list.find(a => (
-        slugify(a?.Symbol) === t ||
-        slugify(a?.Ticker) === t ||
-        slugify(a?.Handle) === t ||
-        slugify(a?.Twitter) === t
-    ));
-    if (match) return match;
-
-    // Friendly fallback: allow partial match (e.g., ?project=optimai matches "OptimAI Network")
-    match = list.find(a => {
-        const n = slugify(a?.Name || a?.name);
-        return n && (n.startsWith(t) || n.includes(t));
-    });
-
-    return match || null;
+    return null;
 }
 
 async function loadAirdropDetails() {
