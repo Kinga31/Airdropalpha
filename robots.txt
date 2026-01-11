@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Keep this file light; the key is declaring the sitemap.
 Sitemap: https://airdropalpha.vercel.app/sitemap.xml
