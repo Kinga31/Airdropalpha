@@ -1,0 +1,28 @@
+
+---
+import { fetchAirdrops, slugify } from "../lib/airdropApi.js";
+const airdrops = await fetchAirdrops();
+const get = (a, keys, fallback = "") =>
+  keys.map(k => a?.[k]).find(v => v !== undefined && v !== null && String(v).trim() !== "") ?? fallback;
+
+const TITLE = "AirdropAlpha | Airdrop 2026 | New Airdrop | Best Airdrop";
+const DESC =
+  "Discover new airdrops and the best crypto airdrop opportunities. AirdropAlpha lists verified airdrops with rewards, categories, and participation info.";
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{TITLE}</title>
+    <meta name="description" content={DESC} />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://airdropalpha.vercel.app/" />
+  </head>
+  <body>
+    <h1>AirdropAlpha</h1>
+    <ul>
+      {airdrops.map(a => <li>{a.Nom || a.Name}</li>)}
+    </ul>
+  </body>
+</html>

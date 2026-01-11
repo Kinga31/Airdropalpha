@@ -1,0 +1,25 @@
+
+---
+import { fetchAirdrops, slugify } from "../../../lib/airdropApi.js";
+
+export async function getStaticPaths() {
+  const list = await fetchAirdrops();
+  return list.map((a) => {
+    const name = a?.Nom || a?.Name || a?.Project || a?.Title || "Unknown";
+    return { params: { slug: slugify(name) }, props: { airdrop: a } };
+  });
+}
+
+const { airdrop } = Astro.props;
+const name = airdrop?.Nom || airdrop?.Name || airdrop?.Project || airdrop?.Title || "Unknown";
+---
+<!doctype html>
+<html>
+  <head>
+    <title>{name} – AirdropAlpha</title>
+  </head>
+  <body>
+    <h1>{name}</h1>
+    <a href="/">Back</a>
+  </body>
+</html>
