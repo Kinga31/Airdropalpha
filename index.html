@@ -1224,83 +1224,149 @@ let allAirdrops = [];
         }
         
         function convertApiData(data) {
-            if (!Array.isArray(data) || data.length === 0) {
-                console.warn('⚠️ API data is empty or not an array');
-                return [];
-            }
-            
-            const headers = data[0];
-            const result = [];
-            
-            console.log('📋 HEADERS TROUVÉS DANS GOOGLE SHEETS:');
-            for (const [letter, columnName] of Object.entries(headers)) {
-                if (columnName && columnName.trim() !== '') {
-                    console.log(`  ${letter}: "${columnName.trim()}"`);
-                }
-            }
-            
-            const columnMap = {};
-            for (const [letter, columnName] of Object.entries(headers)) {
-                if (columnName && columnName.trim() !== '') {
-                    columnMap[letter] = columnName.trim();
-                }
-            }
-            
-            for (let i = 1; i < data.length; i++) {
-                const row = data[i];
-                const airdrop = {};
-                let hasData = false;
-                
-                for (const [letter, value] of Object.entries(row)) {
-                    const columnName = columnMap[letter];
-                    if (columnName && value !== undefined && value !== null && value !== '') {
-                        airdrop[columnName] = String(value).trim();
-                        hasData = true;
+    // Supports 2 formats:
+    // 1) OpenSheet-style: [ { "ID": "...", "Nom": "...", "URL": "...", ... }, ... ]
+    // 2) AppsScript "letters" style: [ {A:"Nom",B:"URL",...}, {A:"1",B:"...",...}, ... ]
+    if (!Array.isArray(data) || data.length === 0) {
+        console.warn('⚠️ API data is empty or not an array');
+        return [];
+    }
+
+    const isPlainObject = (v) => v && typeof v === 'object' && !Array.isArray(v);
+
+    // ---- Format 1: OpenSheet / already keyed rows ----
+    if (isPlainObject(data[0]) && (
+        ('Nom' in data[0]) || ('URL' in data[0]) || ('Catégorie' in data[0]) || ('Expire le' in data[0]) ||
+        ('Name' in data[0]) || ('Category' in data[0])
+    )) {
+        const result = [];
+
+        for (let i = 0; i < data.length; i++) {
+            const row = data[i] || {};
+            const get = (...keys) => {
+                for (const k of keys) {
+                    if (k in row && row[k] !== null && row[k] !== undefined && String(row[k]).trim() !== '') {
+                        return String(row[k]).trim();
                     }
                 }
-                
-                if (hasData && airdrop.Nom && airdrop.Nom.trim() !== '') {
-                    
-                    let logoUrl = airdrop.Logo;
-                    if (!logoUrl && airdrop.URL) {
-                        try {
-                            const url = new URL(airdrop.URL);
-                            const domain = url.hostname.replace('www.', '');
-                            logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
-                        } catch (e) {
-                            logoUrl = 'https://www.google.com/s2/favicons?domain=google.com&sz=128';
-                        }
-                    }
-                    
-                    let score = airdrop.Score || '0';
-                    if (score && !isNaN(score)) {
-                        score = Math.min(100, Math.max(0, parseInt(score)));
-                    }
-                    
-                    // MAPPING EXACT SELON VOTRE STRUCTURE
-                    result.push({
-                        Name: airdrop.Nom || '',
-                        URL: airdrop.URL || '#',
-                        Backers: airdrop.Backer || '',
-                        Commission: airdrop.Commission ? `$${airdrop.Commission}M` : '',
-                        Expiration: airdrop['Expire le'] || '-',
-                        Category: airdrop.Catégorie || '',
-                        Reward: airdrop.Récompense || 'Not specified',
-                        Effort: airdrop.Effort || 'Medium',
-                        Score: score,
-                        Notes: airdrop.Notes || 'No description available',
-                        Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128',
-                        Type: airdrop.Type || '',
-                        LongDescription: airdrop['Description Longue'] || '',
-                        HowToParticipate: airdrop['How to Participate'] || '',
-                        RowOrder: i - 1
-                    });
+                return '';
+            };
+
+            const nom = get('Nom', 'Name');
+            if (!nom) continue;
+
+            const url = get('URL', 'Url', 'Link') || '#';
+
+            let logoUrl = get('Logo', 'logo', 'Logo URL', 'LogoURL');
+            if (!logoUrl && url && url !== '#') {
+                try {
+                    const u = new URL(url);
+                    const domain = u.hostname.replace('www.', '');
+                    logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                } catch (e) {
+                    logoUrl = 'https://www.google.com/s2/favicons?domain=google.com&sz=128';
                 }
             }
-            
-            console.log(`📈 Converted ${result.length} airdrops`);
-            return result;
+
+            let score = get('Score');
+            score = score && !isNaN(score) ? Math.min(100, Math.max(0, parseInt(score))) : 0;
+
+            result.push({
+                Name: nom,
+                URL: url,
+                Backers: get('Backer', 'Backers'),
+                Commission: get('Commission'),
+                Expiration: get('Expire le', 'Expiration'),
+                Category: get('Catégorie', 'Category'),
+                Reward: get('Récompense', 'Reward') || 'Not specified',
+                Effort: get('Effort') || 'Medium',
+                Score: score,
+                Notes: get('Notes') || 'No description available',
+                Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128',
+                Type: get('Type'),
+                LongDescription: get('Description Longue', 'LongDescription'),
+                HowToParticipate: get('How to Participate', 'HowToParticipate'),
+                RowOrder: i
+            });
         }
+
+        console.log(`📈 Converted ${result.length} airdrops (OpenSheet format)`);
+        return result;
+    }
+
+    // ---- Format 2: "letters" table ----
+    const headers = data[0];
+    const result = [];
+
+    console.log('📋 HEADERS TROUVÉS DANS GOOGLE SHEETS:');
+    for (const [letter, columnName] of Object.entries(headers)) {
+        if (columnName && String(columnName).trim() !== '') {
+            console.log(`  ${letter}: "${String(columnName).trim()}"`);
+        }
+    }
+
+    const columnMap = {};
+    for (const [letter, columnName] of Object.entries(headers)) {
+        if (columnName && String(columnName).trim() !== '') {
+            columnMap[letter] = String(columnName).trim();
+        }
+    }
+
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i];
+        const airdrop = {};
+        let hasData = false;
+
+        for (const [letter, value] of Object.entries(row)) {
+            const columnName = columnMap[letter];
+            if (columnName && value !== undefined && value !== null && value !== '') {
+                airdrop[columnName] = String(value).trim();
+                hasData = true;
+            }
+        }
+
+        if (hasData && airdrop.Nom && airdrop.Nom.trim() !== '') {
+            let logoUrl = airdrop.Logo;
+            if (!logoUrl && airdrop.URL) {
+                try {
+                    const url = new URL(airdrop.URL);
+                    const domain = url.hostname.replace('www.', '');
+                    logoUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=128`;
+                } catch (e) {
+                    logoUrl = 'https://www.google.com/s2/favicons?domain=google.com&sz=128';
+                }
+            }
+
+            let score = airdrop.Score || '0';
+            if (score && !isNaN(score)) {
+                score = Math.min(100, Math.max(0, parseInt(score)));
+            } else {
+                score = 0;
+            }
+
+            result.push({
+                Name: airdrop.Nom || '',
+                URL: airdrop.URL || '#',
+                Backers: airdrop.Backer || '',
+                Commission: airdrop.Commission || '',
+                Expiration: airdrop['Expire le'] || '-',
+                Category: airdrop.Catégorie || '',
+                Reward: airdrop.Récompense || 'Not specified',
+                Effort: airdrop.Effort || 'Medium',
+                Score: score,
+                Notes: airdrop.Notes || 'No description available',
+                Logo: logoUrl || 'https://www.google.com/s2/favicons?domain=google.com&sz=128',
+                Type: airdrop.Type || '',
+                LongDescription: airdrop['Description Longue'] || '',
+                HowToParticipate: airdrop['How to Participate'] || '',
+                RowOrder: i - 1
+            });
+        }
+    }
+
+    console.log(`📈 Converted ${result.length} airdrops (letters format)`);
+    return result;
+}
         
         function extractCategoriesAndTypes(airdrops) {
             allCategories.clear();
