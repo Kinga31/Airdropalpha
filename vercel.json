@@ -1,15 +1,46 @@
 {
   "rewrites": [
-    { "source": "/airdrop-details", "destination": "/airdrop-details.html" }
+    {
+      "source": "/airdrop-details",
+      "destination": "/airdrop-details.html"
+    },
+    {
+      "source": "/new-airdrop-daily",
+      "destination": "/new-airdrop-daily.html"
+    },
+    {
+      "source": "/legit-airdrop-list",
+      "destination": "/legit-airdrop-list.html"
+    },
+    {
+      "source": "/free-crypto-airdrop",
+      "destination": "/free-crypto-airdrop.html"
+    },
+    {
+      "source": "/airdrop-2026",
+      "destination": "/airdrop-2026.html"
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "geolocation=(), microphone=(), camera=()"
+        }
       ]
     }
   ]
